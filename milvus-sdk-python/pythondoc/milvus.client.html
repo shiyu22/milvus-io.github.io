@@ -5,17 +5,17 @@
   <head>
     <meta charset="utf-8" />
     <title>milvus.client package &#8212; pymilvus 0.2.5 documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="stylesheet" href="static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="static/documentation_options.js"></script>
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/underscore.js"></script>
+    <script type="text/javascript" src="static/doctools.js"></script>
+    <script type="text/javascript" src="static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
    
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="static/custom.css" type="text/css" />
   
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
@@ -39,13 +39,13 @@
 <span id="milvus-client-abstract-module"></span><h2>milvus.client.abstract module<a class="headerlink" href="#module-milvus.client.abstract" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="milvus.client.abstract.ConnectIntf">
-<em class="property">class </em><code class="sig-prename descclassname">milvus.client.abstract.</code><code class="sig-name descname">ConnectIntf</code><a class="reference internal" href="_modules/milvus/client/abstract.html#ConnectIntf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">milvus.client.abstract.</code><code class="sig-name descname">ConnectIntf</code><a class="reference internal" href="modules/milvus/client/abstract.html#ConnectIntf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>SDK client abstract class</p>
 <p>Connection is a abstract class</p>
 <dl class="method">
 <dt id="milvus.client.abstract.ConnectIntf.add_vectors">
-<code class="sig-name descname">add_vectors</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">records</em>, <em class="sig-param">ids</em>, <em class="sig-param">timeout</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/abstract.html#ConnectIntf.add_vectors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.add_vectors" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_vectors</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">records</em>, <em class="sig-param">ids</em>, <em class="sig-param">timeout</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/abstract.html#ConnectIntf.add_vectors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.add_vectors" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add vectors to table
 Should be implemented</p>
 <dl class="field-list simple">
@@ -66,7 +66,7 @@ ids :list of id, after inserted every vector is given a id</p>
 
 <dl class="method">
 <dt id="milvus.client.abstract.ConnectIntf.client_version">
-<code class="sig-name descname">client_version</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/abstract.html#ConnectIntf.client_version"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.client_version" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">client_version</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/abstract.html#ConnectIntf.client_version"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.client_version" title="Permalink to this definition">¶</a></dt>
 <dd><p>Provide client version
 should be implemented</p>
 <dl class="field-list simple">
@@ -76,14 +76,14 @@ should be implemented</p>
 </p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>(<a class="reference internal" href="status.html#milvus.Status" title="milvus.Status">Status</a>, str)</p>
+<dd class="field-even"><p>(<a class="reference internal" href="milvus.html#milvus.Status" title="milvus.Status">Status</a>, str)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="milvus.client.abstract.ConnectIntf.connect">
-<code class="sig-name descname">connect</code><span class="sig-paren">(</span><em class="sig-param">host</em>, <em class="sig-param">port</em>, <em class="sig-param">uri</em>, <em class="sig-param">timeout</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/abstract.html#ConnectIntf.connect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.connect" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">connect</code><span class="sig-paren">(</span><em class="sig-param">host</em>, <em class="sig-param">port</em>, <em class="sig-param">uri</em>, <em class="sig-param">timeout</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/abstract.html#ConnectIntf.connect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.connect" title="Permalink to this definition">¶</a></dt>
 <dd><p>Connect method should be called before any operations
 Server will be connected after connect return OK
 Should be implemented</p>
@@ -104,7 +104,7 @@ Should be implemented</p>
 
 <dl class="method">
 <dt id="milvus.client.abstract.ConnectIntf.connected">
-<code class="sig-name descname">connected</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/abstract.html#ConnectIntf.connected"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.connected" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">connected</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/abstract.html#ConnectIntf.connected"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.connected" title="Permalink to this definition">¶</a></dt>
 <dd><p>connected, connection status
 Should be implemented</p>
 <dl class="field-list simple">
@@ -116,7 +116,7 @@ Should be implemented</p>
 
 <dl class="method">
 <dt id="milvus.client.abstract.ConnectIntf.create_index">
-<code class="sig-name descname">create_index</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">index</em>, <em class="sig-param">timeout</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/abstract.html#ConnectIntf.create_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.create_index" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create_index</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">index</em>, <em class="sig-param">timeout</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/abstract.html#ConnectIntf.create_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.create_index" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create specified index in a table
 should be implemented</p>
 <dl class="field-list simple">
@@ -144,14 +144,14 @@ should be implemented</p>
 <dd class="field-even"><p>Status: indicate if this operation is successful</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="status.html#milvus.Status" title="milvus.Status">Status</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="milvus.html#milvus.Status" title="milvus.Status">Status</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="milvus.client.abstract.ConnectIntf.create_table">
-<code class="sig-name descname">create_table</code><span class="sig-paren">(</span><em class="sig-param">param</em>, <em class="sig-param">timeout</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/abstract.html#ConnectIntf.create_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.create_table" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create_table</code><span class="sig-paren">(</span><em class="sig-param">param</em>, <em class="sig-param">timeout</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/abstract.html#ConnectIntf.create_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.create_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create table
 Should be implemented</p>
 <dl class="field-list simple">
@@ -169,7 +169,7 @@ Should be implemented</p>
 
 <dl class="method">
 <dt id="milvus.client.abstract.ConnectIntf.delete_table">
-<code class="sig-name descname">delete_table</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/abstract.html#ConnectIntf.delete_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.delete_table" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delete_table</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/abstract.html#ConnectIntf.delete_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.delete_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Delete table
 Should be implemented</p>
 <dl class="field-list simple">
@@ -187,7 +187,7 @@ Should be implemented</p>
 
 <dl class="method">
 <dt id="milvus.client.abstract.ConnectIntf.describe_index">
-<code class="sig-name descname">describe_index</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/abstract.html#ConnectIntf.describe_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.describe_index" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">describe_index</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/abstract.html#ConnectIntf.describe_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.describe_index" title="Permalink to this definition">¶</a></dt>
 <dd><p>Show index information
 should be implemented</p>
 <dl class="field-list simple">
@@ -203,14 +203,14 @@ should be implemented</p>
 </p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference internal" href="status.html#milvus.Status" title="milvus.Status">Status</a>, <a class="reference internal" href="#milvus.client.abstract.TableSchema" title="milvus.client.abstract.TableSchema">TableSchema</a>)</p>
+<dd class="field-odd"><p>(<a class="reference internal" href="milvus.html#milvus.Status" title="milvus.Status">Status</a>, <a class="reference internal" href="#milvus.client.abstract.TableSchema" title="milvus.client.abstract.TableSchema">TableSchema</a>)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="milvus.client.abstract.ConnectIntf.describe_table">
-<code class="sig-name descname">describe_table</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/abstract.html#ConnectIntf.describe_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.describe_table" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">describe_table</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/abstract.html#ConnectIntf.describe_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.describe_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Show table information
 Should be implemented</p>
 <dl class="field-list simple">
@@ -229,7 +229,7 @@ table_schema: TableSchema, given when operation is successful</p>
 
 <dl class="method">
 <dt id="milvus.client.abstract.ConnectIntf.disconnect">
-<code class="sig-name descname">disconnect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/abstract.html#ConnectIntf.disconnect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.disconnect" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">disconnect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/abstract.html#ConnectIntf.disconnect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.disconnect" title="Permalink to this definition">¶</a></dt>
 <dd><p>Disconnect, server will be disconnected after disconnect return SUCCESS
 Should be implemented</p>
 <dl class="field-list simple">
@@ -241,7 +241,7 @@ Should be implemented</p>
 
 <dl class="method">
 <dt id="milvus.client.abstract.ConnectIntf.drop_index">
-<code class="sig-name descname">drop_index</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/abstract.html#ConnectIntf.drop_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.drop_index" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">drop_index</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/abstract.html#ConnectIntf.drop_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.drop_index" title="Permalink to this definition">¶</a></dt>
 <dd><p>Show index information
 should be implemented</p>
 <dl class="field-list simple">
@@ -260,7 +260,7 @@ should be implemented</p>
 
 <dl class="method">
 <dt id="milvus.client.abstract.ConnectIntf.get_table_row_count">
-<code class="sig-name descname">get_table_row_count</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/abstract.html#ConnectIntf.get_table_row_count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.get_table_row_count" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_table_row_count</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/abstract.html#ConnectIntf.get_table_row_count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.get_table_row_count" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get table row count
 Should be implemented</p>
 <p>:type  table_name, str
@@ -278,7 +278,7 @@ count: int, table row count</p>
 
 <dl class="method">
 <dt id="milvus.client.abstract.ConnectIntf.has_table">
-<code class="sig-name descname">has_table</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/abstract.html#ConnectIntf.has_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.has_table" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">has_table</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/abstract.html#ConnectIntf.has_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.has_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method is used to test table existence.
 Should be implemented</p>
 <dl class="field-list simple">
@@ -296,7 +296,7 @@ Should be implemented</p>
 
 <dl class="method">
 <dt id="milvus.client.abstract.ConnectIntf.preload_table">
-<code class="sig-name descname">preload_table</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/abstract.html#ConnectIntf.preload_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.preload_table" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">preload_table</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/abstract.html#ConnectIntf.preload_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.preload_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>load table to memory cache in advance
 should be implemented</p>
 <dl class="field-list simple">
@@ -315,7 +315,7 @@ should be implemented</p>
 
 <dl class="method">
 <dt id="milvus.client.abstract.ConnectIntf.search_vectors">
-<code class="sig-name descname">search_vectors</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">top_k</em>, <em class="sig-param">nprobe</em>, <em class="sig-param">query_records</em>, <em class="sig-param">query_ranges</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/abstract.html#ConnectIntf.search_vectors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.search_vectors" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">search_vectors</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">top_k</em>, <em class="sig-param">nprobe</em>, <em class="sig-param">query_records</em>, <em class="sig-param">query_ranges</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/abstract.html#ConnectIntf.search_vectors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.search_vectors" title="Permalink to this definition">¶</a></dt>
 <dd><p>Query vectors in a table
 Should be implemented</p>
 <dl class="field-list simple">
@@ -337,7 +337,7 @@ query_results: list[TopKQueryResult]</p>
 
 <dl class="method">
 <dt id="milvus.client.abstract.ConnectIntf.search_vectors_in_files">
-<code class="sig-name descname">search_vectors_in_files</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">file_ids</em>, <em class="sig-param">query_records</em>, <em class="sig-param">top_k</em>, <em class="sig-param">nprobe</em>, <em class="sig-param">query_ranges</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/abstract.html#ConnectIntf.search_vectors_in_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.search_vectors_in_files" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">search_vectors_in_files</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">file_ids</em>, <em class="sig-param">query_records</em>, <em class="sig-param">top_k</em>, <em class="sig-param">nprobe</em>, <em class="sig-param">query_ranges</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/abstract.html#ConnectIntf.search_vectors_in_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.search_vectors_in_files" title="Permalink to this definition">¶</a></dt>
 <dd><p>Query vectors in a table, query vector in specified files
 Should be implemented</p>
 <dl class="field-list simple">
@@ -360,7 +360,7 @@ query_results: list[TopKQueryResult]</p>
 
 <dl class="method">
 <dt id="milvus.client.abstract.ConnectIntf.server_status">
-<code class="sig-name descname">server_status</code><span class="sig-paren">(</span><em class="sig-param">timeout</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/abstract.html#ConnectIntf.server_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.server_status" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">server_status</code><span class="sig-paren">(</span><em class="sig-param">timeout</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/abstract.html#ConnectIntf.server_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.server_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Provide server status. When cmd !='version', provide 'OK'
 should be implemented</p>
 <dl class="field-list simple">
@@ -373,14 +373,14 @@ should be implemented</p>
 </p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference internal" href="status.html#milvus.Status" title="milvus.Status">Status</a>, str)</p>
+<dd class="field-odd"><p>(<a class="reference internal" href="milvus.html#milvus.Status" title="milvus.Status">Status</a>, str)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="milvus.client.abstract.ConnectIntf.server_version">
-<code class="sig-name descname">server_version</code><span class="sig-paren">(</span><em class="sig-param">timeout</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/abstract.html#ConnectIntf.server_version"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.server_version" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">server_version</code><span class="sig-paren">(</span><em class="sig-param">timeout</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/abstract.html#ConnectIntf.server_version"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.server_version" title="Permalink to this definition">¶</a></dt>
 <dd><p>Provide server version
 should be implemented</p>
 <dl class="field-list simple">
@@ -393,14 +393,14 @@ should be implemented</p>
 </p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference internal" href="status.html#milvus.Status" title="milvus.Status">Status</a>, str)</p>
+<dd class="field-odd"><p>(<a class="reference internal" href="milvus.html#milvus.Status" title="milvus.Status">Status</a>, str)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="milvus.client.abstract.ConnectIntf.show_tables">
-<code class="sig-name descname">show_tables</code><span class="sig-paren">(</span><em class="sig-param">timeout</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/abstract.html#ConnectIntf.show_tables"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.show_tables" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">show_tables</code><span class="sig-paren">(</span><em class="sig-param">timeout</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/abstract.html#ConnectIntf.show_tables"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.ConnectIntf.show_tables" title="Permalink to this definition">¶</a></dt>
 <dd><p>Show all tables in database
 should be implemented</p>
 <dl class="field-list simple">
@@ -418,14 +418,14 @@ tables: list[str], list of table names</p>
 
 <dl class="class">
 <dt id="milvus.client.abstract.IndexParam">
-<em class="property">class </em><code class="sig-prename descclassname">milvus.client.abstract.</code><code class="sig-name descname">IndexParam</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">index_type</em>, <em class="sig-param">nlist</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/abstract.html#IndexParam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.IndexParam" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">milvus.client.abstract.</code><code class="sig-name descname">IndexParam</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">index_type</em>, <em class="sig-param">nlist</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/abstract.html#IndexParam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.IndexParam" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Index Param</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>table_name</strong> (<em>str</em>) -- (Required) name of table</p></li>
-<li><p><strong>index_type</strong> (<a class="reference internal" href="types.html#milvus.IndexType" title="milvus.IndexType"><em>IndexType</em></a>) -- <p>(Required) index type, default = IndexType.INVALID</p>
+<li><p><strong>index_type</strong> (<a class="reference internal" href="milvus.html#milvus.IndexType" title="milvus.IndexType"><em>IndexType</em></a>) -- <p>(Required) index type, default = IndexType.INVALID</p>
 <p><cite>IndexType</cite>: 0-invalid, 1-flat, 2-ivflat, 3-IVF_SQ8, 4-MIX_NSG</p>
 </p></li>
 <li><p><strong>nlist</strong> (<em>int64</em>) -- (Required) num of cell</p></li>
@@ -436,13 +436,13 @@ tables: list[str], list of table names</p>
 
 <dl class="class">
 <dt id="milvus.client.abstract.QueryResult">
-<em class="property">class </em><code class="sig-prename descclassname">milvus.client.abstract.</code><code class="sig-name descname">QueryResult</code><span class="sig-paren">(</span><em class="sig-param">_id</em>, <em class="sig-param">_distance</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/abstract.html#QueryResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.QueryResult" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">milvus.client.abstract.</code><code class="sig-name descname">QueryResult</code><span class="sig-paren">(</span><em class="sig-param">_id</em>, <em class="sig-param">_distance</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/abstract.html#QueryResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.QueryResult" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 </dd></dl>
 
 <dl class="class">
 <dt id="milvus.client.abstract.Range">
-<em class="property">class </em><code class="sig-prename descclassname">milvus.client.abstract.</code><code class="sig-name descname">Range</code><span class="sig-paren">(</span><em class="sig-param">start_date</em>, <em class="sig-param">end_date</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/abstract.html#Range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.Range" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">milvus.client.abstract.</code><code class="sig-name descname">Range</code><span class="sig-paren">(</span><em class="sig-param">start_date</em>, <em class="sig-param">end_date</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/abstract.html#Range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.Range" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Range information</p>
 <dl class="field-list simple">
@@ -457,19 +457,19 @@ tables: list[str], list of table names</p>
 
 <dl class="class">
 <dt id="milvus.client.abstract.RowQueryResult">
-<em class="property">class </em><code class="sig-prename descclassname">milvus.client.abstract.</code><code class="sig-name descname">RowQueryResult</code><span class="sig-paren">(</span><em class="sig-param">_id_list</em>, <em class="sig-param">_dis_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/abstract.html#RowQueryResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.RowQueryResult" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">milvus.client.abstract.</code><code class="sig-name descname">RowQueryResult</code><span class="sig-paren">(</span><em class="sig-param">_id_list</em>, <em class="sig-param">_dis_list</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/abstract.html#RowQueryResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.RowQueryResult" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 </dd></dl>
 
 <dl class="class">
 <dt id="milvus.client.abstract.TableSchema">
-<em class="property">class </em><code class="sig-prename descclassname">milvus.client.abstract.</code><code class="sig-name descname">TableSchema</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">dimension</em>, <em class="sig-param">index_file_size</em>, <em class="sig-param">metric_type</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/abstract.html#TableSchema"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.TableSchema" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">milvus.client.abstract.</code><code class="sig-name descname">TableSchema</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">dimension</em>, <em class="sig-param">index_file_size</em>, <em class="sig-param">metric_type</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/abstract.html#TableSchema"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.TableSchema" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 </dd></dl>
 
 <dl class="class">
 <dt id="milvus.client.abstract.TopKQueryResult">
-<em class="property">class </em><code class="sig-prename descclassname">milvus.client.abstract.</code><code class="sig-name descname">TopKQueryResult</code><span class="sig-paren">(</span><em class="sig-param">raw_source</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/abstract.html#TopKQueryResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.TopKQueryResult" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">milvus.client.abstract.</code><code class="sig-name descname">TopKQueryResult</code><span class="sig-paren">(</span><em class="sig-param">raw_source</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/abstract.html#TopKQueryResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.abstract.TopKQueryResult" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>TopK query results, shown as 2-D array</p>
 <p>This Class unpack response from server, store ids and distances separately.</p>
@@ -504,28 +504,28 @@ tables: list[str], list of table names</p>
 <span id="milvus-client-exceptions-module"></span><h2>milvus.client.exceptions module<a class="headerlink" href="#module-milvus.client.exceptions" title="Permalink to this headline">¶</a></h2>
 <dl class="exception">
 <dt id="milvus.client.exceptions.ConnectError">
-<em class="property">exception </em><code class="sig-prename descclassname">milvus.client.exceptions.</code><code class="sig-name descname">ConnectError</code><a class="reference internal" href="_modules/milvus/client/exceptions.html#ConnectError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.exceptions.ConnectError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="sig-prename descclassname">milvus.client.exceptions.</code><code class="sig-name descname">ConnectError</code><a class="reference internal" href="modules/milvus/client/exceptions.html#ConnectError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.exceptions.ConnectError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></p>
 <p>Connect server failed</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="milvus.client.exceptions.NotConnectError">
-<em class="property">exception </em><code class="sig-prename descclassname">milvus.client.exceptions.</code><code class="sig-name descname">NotConnectError</code><a class="reference internal" href="_modules/milvus/client/exceptions.html#NotConnectError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.exceptions.NotConnectError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="sig-prename descclassname">milvus.client.exceptions.</code><code class="sig-name descname">NotConnectError</code><a class="reference internal" href="modules/milvus/client/exceptions.html#NotConnectError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.exceptions.NotConnectError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#milvus.client.exceptions.ConnectError" title="milvus.client.exceptions.ConnectError"><code class="xref py py-class docutils literal notranslate"><span class="pre">milvus.client.exceptions.ConnectError</span></code></a></p>
 <p>Disconnect error</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="milvus.client.exceptions.ParamError">
-<em class="property">exception </em><code class="sig-prename descclassname">milvus.client.exceptions.</code><code class="sig-name descname">ParamError</code><a class="reference internal" href="_modules/milvus/client/exceptions.html#ParamError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.exceptions.ParamError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="sig-prename descclassname">milvus.client.exceptions.</code><code class="sig-name descname">ParamError</code><a class="reference internal" href="modules/milvus/client/exceptions.html#ParamError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.exceptions.ParamError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></p>
 <p>Param of interface is illegal</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="milvus.client.exceptions.RepeatingConnectError">
-<em class="property">exception </em><code class="sig-prename descclassname">milvus.client.exceptions.</code><code class="sig-name descname">RepeatingConnectError</code><a class="reference internal" href="_modules/milvus/client/exceptions.html#RepeatingConnectError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.exceptions.RepeatingConnectError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="sig-prename descclassname">milvus.client.exceptions.</code><code class="sig-name descname">RepeatingConnectError</code><a class="reference internal" href="modules/milvus/client/exceptions.html#RepeatingConnectError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.exceptions.RepeatingConnectError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#milvus.client.exceptions.ConnectError" title="milvus.client.exceptions.ConnectError"><code class="xref py py-class docutils literal notranslate"><span class="pre">milvus.client.exceptions.ConnectError</span></code></a></p>
 <p>Try to connect repeatedly</p>
 </dd></dl>
@@ -535,11 +535,11 @@ tables: list[str], list of table names</p>
 <span id="milvus-client-grpc-client-module"></span><h2>milvus.client.grpc_client module<a class="headerlink" href="#module-milvus.client.grpc_client" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="milvus.client.grpc_client.GrpcMilvus">
-<em class="property">class </em><code class="sig-prename descclassname">milvus.client.grpc_client.</code><code class="sig-name descname">GrpcMilvus</code><a class="reference internal" href="_modules/milvus/client/grpc_client.html#GrpcMilvus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">milvus.client.grpc_client.</code><code class="sig-name descname">GrpcMilvus</code><a class="reference internal" href="modules/milvus/client/grpc_client.html#GrpcMilvus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#milvus.client.abstract.ConnectIntf" title="milvus.client.abstract.ConnectIntf"><code class="xref py py-class docutils literal notranslate"><span class="pre">milvus.client.abstract.ConnectIntf</span></code></a></p>
 <dl class="method">
 <dt id="milvus.client.grpc_client.GrpcMilvus.add_vectors">
-<code class="sig-name descname">add_vectors</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">records</em>, <em class="sig-param">ids=None</em>, <em class="sig-param">timeout=180</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.add_vectors" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_vectors</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">records</em>, <em class="sig-param">ids=None</em>, <em class="sig-param">timeout=-1</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.add_vectors" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add vectors to table</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -555,20 +555,18 @@ tables: list[str], list of table names</p>
 ids: list of id, after inserted every vector is given a id</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference internal" href="status.html#milvus.Status" title="milvus.Status">Status</a>, list(int))</p>
+<dd class="field-odd"><p>(<a class="reference internal" href="milvus.html#milvus.Status" title="milvus.Status">Status</a>, list(int))</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="milvus.client.grpc_client.GrpcMilvus.client_version">
-<code class="sig-name descname">client_version</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/grpc_client.html#GrpcMilvus.client_version"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.client_version" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">client_version</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/grpc_client.html#GrpcMilvus.client_version"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.client_version" title="Permalink to this definition">¶</a></dt>
 <dd><p>Provide client version</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><p>Status: indicate if operation is successful</p>
-<p>str : Client version</p>
-</p>
+<dd class="field-odd"><p>version: Client version</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>(str)</p>
@@ -578,7 +576,7 @@ ids: list of id, after inserted every vector is given a id</p>
 
 <dl class="method">
 <dt id="milvus.client.grpc_client.GrpcMilvus.connect">
-<code class="sig-name descname">connect</code><span class="sig-paren">(</span><em class="sig-param">host=None</em>, <em class="sig-param">port=None</em>, <em class="sig-param">uri=None</em>, <em class="sig-param">timeout=3</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/grpc_client.html#GrpcMilvus.connect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.connect" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">connect</code><span class="sig-paren">(</span><em class="sig-param">host=None</em>, <em class="sig-param">port=None</em>, <em class="sig-param">uri=None</em>, <em class="sig-param">timeout=3</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/grpc_client.html#GrpcMilvus.connect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.connect" title="Permalink to this definition">¶</a></dt>
 <dd><p>Connect method should be called before any operations.
 Server will be connected after connect return OK</p>
 <dl class="field-list simple">
@@ -596,26 +594,28 @@ Server will be connected after connect return OK</p>
 <dd class="field-even"><p>Status, indicate if connect is successful</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="status.html#milvus.Status" title="milvus.Status">Status</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="milvus.html#milvus.Status" title="milvus.Status">Status</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="milvus.client.grpc_client.GrpcMilvus.connected">
-<code class="sig-name descname">connected</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/grpc_client.html#GrpcMilvus.connected"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.connected" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">connected</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/grpc_client.html#GrpcMilvus.connected"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.connected" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if client is connected to the server</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>if client is connected</p>
 </dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
 </dl>
-<p>:rtype bool</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="milvus.client.grpc_client.GrpcMilvus.count_table">
-<code class="sig-name descname">count_table</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout=30</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/grpc_client.html#GrpcMilvus.count_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.count_table" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">count_table</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout=30</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/grpc_client.html#GrpcMilvus.count_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.count_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>obtain vector number in table</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -631,7 +631,7 @@ Server will be connected after connect return OK</p>
 
 <dl class="method">
 <dt id="milvus.client.grpc_client.GrpcMilvus.create_index">
-<code class="sig-name descname">create_index</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">index=None</em>, <em class="sig-param">timeout=-1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/grpc_client.html#GrpcMilvus.create_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.create_index" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create_index</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">index=None</em>, <em class="sig-param">timeout=-1</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/grpc_client.html#GrpcMilvus.create_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.create_index" title="Permalink to this definition">¶</a></dt>
 <dd><p>build vectors of specific table and create vector index</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -652,7 +652,7 @@ else method invoke a asynchronous call, timeout work here</p>
 
 <dl class="method">
 <dt id="milvus.client.grpc_client.GrpcMilvus.create_table">
-<code class="sig-name descname">create_table</code><span class="sig-paren">(</span><em class="sig-param">param</em>, <em class="sig-param">timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/grpc_client.html#GrpcMilvus.create_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.create_table" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create_table</code><span class="sig-paren">(</span><em class="sig-param">param</em>, <em class="sig-param">timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/grpc_client.html#GrpcMilvus.create_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.create_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create table</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -674,7 +674,7 @@ else method invoke a asynchronous call, timeout work here</p>
 <dd class="field-even"><p>Status, indicate if operation is successful</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="status.html#milvus.Status" title="milvus.Status">Status</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="milvus.html#milvus.Status" title="milvus.Status">Status</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -691,14 +691,14 @@ else method invoke a asynchronous call, timeout work here</p>
 <dd class="field-even"><p>Status, indicate if operation is successful</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="status.html#milvus.Status" title="milvus.Status">Status</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="milvus.html#milvus.Status" title="milvus.Status">Status</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="milvus.client.grpc_client.GrpcMilvus.describe_index">
-<code class="sig-name descname">describe_index</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/grpc_client.html#GrpcMilvus.describe_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.describe_index" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">describe_index</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/grpc_client.html#GrpcMilvus.describe_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.describe_index" title="Permalink to this definition">¶</a></dt>
 <dd><p>Show index information of designated table</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -713,7 +713,7 @@ IndexSchema:</p>
 
 <dl class="method">
 <dt id="milvus.client.grpc_client.GrpcMilvus.describe_table">
-<code class="sig-name descname">describe_table</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/grpc_client.html#GrpcMilvus.describe_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.describe_table" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">describe_table</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/grpc_client.html#GrpcMilvus.describe_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.describe_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Show table information</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -725,28 +725,28 @@ Status: indicate if query is successful
 table_schema: return when operation is successful</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference internal" href="status.html#milvus.Status" title="milvus.Status">Status</a>, <a class="reference internal" href="#milvus.client.abstract.TableSchema" title="milvus.client.abstract.TableSchema">TableSchema</a>)</p>
+<dd class="field-odd"><p>(<a class="reference internal" href="milvus.html#milvus.Status" title="milvus.Status">Status</a>, <a class="reference internal" href="#milvus.client.abstract.TableSchema" title="milvus.client.abstract.TableSchema">TableSchema</a>)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="milvus.client.grpc_client.GrpcMilvus.disconnect">
-<code class="sig-name descname">disconnect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/grpc_client.html#GrpcMilvus.disconnect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.disconnect" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">disconnect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/grpc_client.html#GrpcMilvus.disconnect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.disconnect" title="Permalink to this definition">¶</a></dt>
 <dd><p>Disconnect with the server and distroy the channel</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>Status, indicate if disconnect is successful</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="status.html#milvus.Status" title="milvus.Status">Status</a></p>
+<dd class="field-even"><p><a class="reference internal" href="milvus.html#milvus.Status" title="milvus.Status">Status</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="milvus.client.grpc_client.GrpcMilvus.drop_index">
-<code class="sig-name descname">drop_index</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/grpc_client.html#GrpcMilvus.drop_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.drop_index" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">drop_index</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/grpc_client.html#GrpcMilvus.drop_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.drop_index" title="Permalink to this definition">¶</a></dt>
 <dd><p>drop index from index file</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -761,7 +761,7 @@ table_schema: return when operation is successful</p>
 
 <dl class="method">
 <dt id="milvus.client.grpc_client.GrpcMilvus.drop_table">
-<code class="sig-name descname">drop_table</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout=20</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/grpc_client.html#GrpcMilvus.drop_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.drop_table" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">drop_table</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout=20</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/grpc_client.html#GrpcMilvus.drop_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.drop_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Delete table with table_name</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -771,7 +771,7 @@ table_schema: return when operation is successful</p>
 <dd class="field-even"><p>Status, indicate if operation is successful</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="status.html#milvus.Status" title="milvus.Status">Status</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="milvus.html#milvus.Status" title="milvus.Status">Status</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -794,7 +794,7 @@ table_schema: return when operation is successful</p>
 
 <dl class="method">
 <dt id="milvus.client.grpc_client.GrpcMilvus.has_table">
-<code class="sig-name descname">has_table</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/grpc_client.html#GrpcMilvus.has_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.has_table" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">has_table</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/grpc_client.html#GrpcMilvus.has_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.has_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method is used to test table existence.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -812,7 +812,7 @@ bool if given table_name exists</p>
 
 <dl class="method">
 <dt id="milvus.client.grpc_client.GrpcMilvus.insert">
-<code class="sig-name descname">insert</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">records</em>, <em class="sig-param">ids=None</em>, <em class="sig-param">timeout=180</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/grpc_client.html#GrpcMilvus.insert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.insert" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">insert</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">records</em>, <em class="sig-param">ids=None</em>, <em class="sig-param">timeout=-1</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/grpc_client.html#GrpcMilvus.insert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.insert" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add vectors to table</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -828,14 +828,14 @@ bool if given table_name exists</p>
 ids: list of id, after inserted every vector is given a id</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference internal" href="status.html#milvus.Status" title="milvus.Status">Status</a>, list(int))</p>
+<dd class="field-odd"><p>(<a class="reference internal" href="milvus.html#milvus.Status" title="milvus.Status">Status</a>, list(int))</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="milvus.client.grpc_client.GrpcMilvus.preload_table">
-<code class="sig-name descname">preload_table</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout=300</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/grpc_client.html#GrpcMilvus.preload_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.preload_table" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">preload_table</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">timeout=300</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/grpc_client.html#GrpcMilvus.preload_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.preload_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load table to cache in advance</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -849,7 +849,7 @@ ids: list of id, after inserted every vector is given a id</p>
 
 <dl class="method">
 <dt id="milvus.client.grpc_client.GrpcMilvus.search">
-<code class="sig-name descname">search</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">top_k</em>, <em class="sig-param">nprobe</em>, <em class="sig-param">query_records</em>, <em class="sig-param">query_ranges=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/grpc_client.html#GrpcMilvus.search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.search" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">search</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">top_k</em>, <em class="sig-param">nprobe</em>, <em class="sig-param">query_records</em>, <em class="sig-param">query_ranges=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/grpc_client.html#GrpcMilvus.search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.search" title="Permalink to this definition">¶</a></dt>
 <dd><p>Search similar vectors in designated table</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -869,14 +869,14 @@ result: query result</p>
 </dl>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference internal" href="status.html#milvus.Status" title="milvus.Status">Status</a>, <a class="reference internal" href="results.html#milvus.client.abstract.TopKQueryResult" title="milvus.client.abstract.TopKQueryResult">TopKQueryResult</a>)</p>
+<dd class="field-odd"><p>(<a class="reference internal" href="milvus.html#milvus.Status" title="milvus.Status">Status</a>, <a class="reference internal" href="#milvus.client.abstract.TopKQueryResult" title="milvus.client.abstract.TopKQueryResult">TopKQueryResult</a>)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="milvus.client.grpc_client.GrpcMilvus.search_in_files">
-<code class="sig-name descname">search_in_files</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">file_ids</em>, <em class="sig-param">query_records</em>, <em class="sig-param">top_k</em>, <em class="sig-param">nprobe=16</em>, <em class="sig-param">query_ranges=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/grpc_client.html#GrpcMilvus.search_in_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.search_in_files" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">search_in_files</code><span class="sig-paren">(</span><em class="sig-param">table_name</em>, <em class="sig-param">file_ids</em>, <em class="sig-param">query_records</em>, <em class="sig-param">top_k</em>, <em class="sig-param">nprobe=16</em>, <em class="sig-param">query_ranges=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/grpc_client.html#GrpcMilvus.search_in_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.search_in_files" title="Permalink to this definition">¶</a></dt>
 <dd><p>Query vectors in a table, in specified files</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -895,7 +895,7 @@ If not specified, search in the whole table</p></li>
 results: query result</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference internal" href="status.html#milvus.Status" title="milvus.Status">Status</a>, <a class="reference internal" href="results.html#milvus.client.abstract.TopKQueryResult" title="milvus.client.abstract.TopKQueryResult">TopKQueryResult</a>)</p>
+<dd class="field-odd"><p>(<a class="reference internal" href="milvus.html#milvus.Status" title="milvus.Status">Status</a>, <a class="reference internal" href="#milvus.client.abstract.TopKQueryResult" title="milvus.client.abstract.TopKQueryResult">TopKQueryResult</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -922,7 +922,7 @@ result: query result</p>
 </dl>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference internal" href="status.html#milvus.Status" title="milvus.Status">Status</a>, <a class="reference internal" href="results.html#milvus.client.abstract.TopKQueryResult" title="milvus.client.abstract.TopKQueryResult">TopKQueryResult</a>)</p>
+<dd class="field-odd"><p>(<a class="reference internal" href="milvus.html#milvus.Status" title="milvus.Status">Status</a>, <a class="reference internal" href="#milvus.client.abstract.TopKQueryResult" title="milvus.client.abstract.TopKQueryResult">TopKQueryResult</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -948,7 +948,7 @@ If not specified, search in the whole table</p></li>
 results: query result</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference internal" href="status.html#milvus.Status" title="milvus.Status">Status</a>, <a class="reference internal" href="results.html#milvus.client.abstract.TopKQueryResult" title="milvus.client.abstract.TopKQueryResult">TopKQueryResult</a>)</p>
+<dd class="field-odd"><p>(<a class="reference internal" href="milvus.html#milvus.Status" title="milvus.Status">Status</a>, <a class="reference internal" href="#milvus.client.abstract.TopKQueryResult" title="milvus.client.abstract.TopKQueryResult">TopKQueryResult</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -961,7 +961,7 @@ results: query result</p>
 
 <dl class="method">
 <dt id="milvus.client.grpc_client.GrpcMilvus.server_status">
-<code class="sig-name descname">server_status</code><span class="sig-paren">(</span><em class="sig-param">timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/grpc_client.html#GrpcMilvus.server_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.server_status" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">server_status</code><span class="sig-paren">(</span><em class="sig-param">timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/grpc_client.html#GrpcMilvus.server_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.server_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Provide server status</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -970,14 +970,14 @@ results: query result</p>
 </p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>(<a class="reference internal" href="status.html#milvus.Status" title="milvus.Status">Status</a>, str)</p>
+<dd class="field-even"><p>(<a class="reference internal" href="milvus.html#milvus.Status" title="milvus.Status">Status</a>, str)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="milvus.client.grpc_client.GrpcMilvus.server_version">
-<code class="sig-name descname">server_version</code><span class="sig-paren">(</span><em class="sig-param">timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/grpc_client.html#GrpcMilvus.server_version"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.server_version" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">server_version</code><span class="sig-paren">(</span><em class="sig-param">timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/grpc_client.html#GrpcMilvus.server_version"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.server_version" title="Permalink to this definition">¶</a></dt>
 <dd><p>Provide server version</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -986,14 +986,14 @@ results: query result</p>
 </p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>(<a class="reference internal" href="status.html#milvus.Status" title="milvus.Status">Status</a>, str)</p>
+<dd class="field-even"><p>(<a class="reference internal" href="milvus.html#milvus.Status" title="milvus.Status">Status</a>, str)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="milvus.client.grpc_client.GrpcMilvus.show_tables">
-<code class="sig-name descname">show_tables</code><span class="sig-paren">(</span><em class="sig-param">timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/grpc_client.html#GrpcMilvus.show_tables"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.show_tables" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">show_tables</code><span class="sig-paren">(</span><em class="sig-param">timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/grpc_client.html#GrpcMilvus.show_tables"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.grpc_client.GrpcMilvus.show_tables" title="Permalink to this definition">¶</a></dt>
 <dd><p>Show all tables information in database</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -1005,7 +1005,7 @@ results: query result</p>
 </p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>(<a class="reference internal" href="status.html#milvus.Status" title="milvus.Status">Status</a>, list[str])</p>
+<dd class="field-even"><p>(<a class="reference internal" href="milvus.html#milvus.Status" title="milvus.Status">Status</a>, list[str])</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1017,7 +1017,7 @@ results: query result</p>
 <span id="milvus-client-types-module"></span><h2>milvus.client.types module<a class="headerlink" href="#module-milvus.client.types" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="milvus.client.types.IndexType">
-<em class="property">class </em><code class="sig-prename descclassname">milvus.client.types.</code><code class="sig-name descname">IndexType</code><a class="reference internal" href="_modules/milvus/client/types.html#IndexType"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.types.IndexType" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">milvus.client.types.</code><code class="sig-name descname">IndexType</code><a class="reference internal" href="modules/milvus/client/types.html#IndexType"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.types.IndexType" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></p>
 <p>An enumeration.</p>
 <dl class="attribute">
@@ -1064,7 +1064,7 @@ results: query result</p>
 
 <dl class="class">
 <dt id="milvus.client.types.MetricType">
-<em class="property">class </em><code class="sig-prename descclassname">milvus.client.types.</code><code class="sig-name descname">MetricType</code><a class="reference internal" href="_modules/milvus/client/types.html#MetricType"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.types.MetricType" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">milvus.client.types.</code><code class="sig-name descname">MetricType</code><a class="reference internal" href="modules/milvus/client/types.html#MetricType"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.types.MetricType" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></p>
 <p>An enumeration.</p>
 <dl class="attribute">
@@ -1081,7 +1081,7 @@ results: query result</p>
 
 <dl class="class">
 <dt id="milvus.client.types.Status">
-<em class="property">class </em><code class="sig-prename descclassname">milvus.client.types.</code><code class="sig-name descname">Status</code><span class="sig-paren">(</span><em class="sig-param">code=0</em>, <em class="sig-param">message='Success'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/types.html#Status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.types.Status" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">milvus.client.types.</code><code class="sig-name descname">Status</code><span class="sig-paren">(</span><em class="sig-param">code=0</em>, <em class="sig-param">message='Success'</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/types.html#Status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.types.Status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="field-list simple">
 <dt class="field-odd">Attribute code</dt>
@@ -1193,7 +1193,7 @@ results: query result</p>
 
 <dl class="method">
 <dt id="milvus.client.types.Status.OK">
-<code class="sig-name descname">OK</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/types.html#Status.OK"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.types.Status.OK" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">OK</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/types.html#Status.OK"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.types.Status.OK" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -1228,92 +1228,92 @@ results: query result</p>
 <span id="milvus-client-utils-module"></span><h2>milvus.client.utils module<a class="headerlink" href="#module-milvus.client.utils" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="milvus.client.utils.check_pass_param">
-<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">check_pass_param</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/utils.html#check_pass_param"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.check_pass_param" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">check_pass_param</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/utils.html#check_pass_param"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.check_pass_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="milvus.client.utils.int_or_str">
-<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">int_or_str</code><span class="sig-paren">(</span><em class="sig-param">item</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/utils.html#int_or_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.int_or_str" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">int_or_str</code><span class="sig-paren">(</span><em class="sig-param">item</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/utils.html#int_or_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.int_or_str" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="milvus.client.utils.is_correct_date_str">
-<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_correct_date_str</code><span class="sig-paren">(</span><em class="sig-param">param</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/utils.html#is_correct_date_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_correct_date_str" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_correct_date_str</code><span class="sig-paren">(</span><em class="sig-param">param</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/utils.html#is_correct_date_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_correct_date_str" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="milvus.client.utils.is_legal_array">
-<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_array</code><span class="sig-paren">(</span><em class="sig-param">array</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/utils.html#is_legal_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_array" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_array</code><span class="sig-paren">(</span><em class="sig-param">array</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/utils.html#is_legal_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_array" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="milvus.client.utils.is_legal_cmd">
-<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_cmd</code><span class="sig-paren">(</span><em class="sig-param">cmd</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/utils.html#is_legal_cmd"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_cmd" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_cmd</code><span class="sig-paren">(</span><em class="sig-param">cmd</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/utils.html#is_legal_cmd"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_cmd" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="milvus.client.utils.is_legal_date_range">
-<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_date_range</code><span class="sig-paren">(</span><em class="sig-param">start</em>, <em class="sig-param">end</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/utils.html#is_legal_date_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_date_range" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_date_range</code><span class="sig-paren">(</span><em class="sig-param">start</em>, <em class="sig-param">end</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/utils.html#is_legal_date_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_date_range" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="milvus.client.utils.is_legal_dimension">
-<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_dimension</code><span class="sig-paren">(</span><em class="sig-param">dim</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/utils.html#is_legal_dimension"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_dimension" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_dimension</code><span class="sig-paren">(</span><em class="sig-param">dim</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/utils.html#is_legal_dimension"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_dimension" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="milvus.client.utils.is_legal_host">
-<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_host</code><span class="sig-paren">(</span><em class="sig-param">host</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/utils.html#is_legal_host"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_host" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_host</code><span class="sig-paren">(</span><em class="sig-param">host</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/utils.html#is_legal_host"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_host" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="milvus.client.utils.is_legal_ids">
-<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_ids</code><span class="sig-paren">(</span><em class="sig-param">ids</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/utils.html#is_legal_ids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_ids" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_ids</code><span class="sig-paren">(</span><em class="sig-param">ids</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/utils.html#is_legal_ids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_ids" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="milvus.client.utils.is_legal_index_size">
-<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_index_size</code><span class="sig-paren">(</span><em class="sig-param">index_size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/utils.html#is_legal_index_size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_index_size" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_index_size</code><span class="sig-paren">(</span><em class="sig-param">index_size</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/utils.html#is_legal_index_size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_index_size" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="milvus.client.utils.is_legal_index_type">
-<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_index_type</code><span class="sig-paren">(</span><em class="sig-param">index_type</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/utils.html#is_legal_index_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_index_type" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_index_type</code><span class="sig-paren">(</span><em class="sig-param">index_type</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/utils.html#is_legal_index_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_index_type" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="milvus.client.utils.is_legal_metric_type">
-<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_metric_type</code><span class="sig-paren">(</span><em class="sig-param">metric_type</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/utils.html#is_legal_metric_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_metric_type" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_metric_type</code><span class="sig-paren">(</span><em class="sig-param">metric_type</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/utils.html#is_legal_metric_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_metric_type" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="milvus.client.utils.is_legal_nlist">
-<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_nlist</code><span class="sig-paren">(</span><em class="sig-param">nlist</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/utils.html#is_legal_nlist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_nlist" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_nlist</code><span class="sig-paren">(</span><em class="sig-param">nlist</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/utils.html#is_legal_nlist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_nlist" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="milvus.client.utils.is_legal_nprobe">
-<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_nprobe</code><span class="sig-paren">(</span><em class="sig-param">nprobe</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/utils.html#is_legal_nprobe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_nprobe" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_nprobe</code><span class="sig-paren">(</span><em class="sig-param">nprobe</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/utils.html#is_legal_nprobe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_nprobe" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="milvus.client.utils.is_legal_port">
-<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_port</code><span class="sig-paren">(</span><em class="sig-param">port</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/utils.html#is_legal_port"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_port" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_port</code><span class="sig-paren">(</span><em class="sig-param">port</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/utils.html#is_legal_port"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_port" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="milvus.client.utils.is_legal_table_name">
-<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_table_name</code><span class="sig-paren">(</span><em class="sig-param">table_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/utils.html#is_legal_table_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_table_name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_table_name</code><span class="sig-paren">(</span><em class="sig-param">table_name</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/utils.html#is_legal_table_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_table_name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="milvus.client.utils.is_legal_topk">
-<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_topk</code><span class="sig-paren">(</span><em class="sig-param">topk</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/utils.html#is_legal_topk"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_topk" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">is_legal_topk</code><span class="sig-paren">(</span><em class="sig-param">topk</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/utils.html#is_legal_topk"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.is_legal_topk" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="milvus.client.utils.parser_range_date">
-<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">parser_range_date</code><span class="sig-paren">(</span><em class="sig-param">date</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/utils.html#parser_range_date"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.parser_range_date" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">milvus.client.utils.</code><code class="sig-name descname">parser_range_date</code><span class="sig-paren">(</span><em class="sig-param">date</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/utils.html#parser_range_date"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.utils.parser_range_date" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -1386,7 +1386,7 @@ results: query result</p>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="_sources/milvus.client.rst.txt"
+      <a href="sources/milvus.client.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

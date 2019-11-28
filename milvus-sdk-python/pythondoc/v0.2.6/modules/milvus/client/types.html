@@ -34,7 +34,7 @@
 <span></span><span class="kn">from</span> <span class="nn">enum</span> <span class="k">import</span> <span class="n">IntEnum</span>
 
 
-<div class="viewcode-block" id="Status"><a class="viewcode-back" href="../../../milvus.html#milvus.Status">[docs]</a><span class="k">class</span> <span class="nc">Status</span><span class="p">:</span>
+<div class="viewcode-block" id="Status"><a class="viewcode-back" href="../../../status.html#milvus.Status">[docs]</a><span class="k">class</span> <span class="nc">Status</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    :attribute code: int (optional) default as ok</span>
 
@@ -88,16 +88,17 @@
     <span class="k">def</span> <span class="nf">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span> <span class="o">!=</span> <span class="n">other</span>
 
-<div class="viewcode-block" id="Status.OK"><a class="viewcode-back" href="../../../milvus.html#milvus.Status.OK">[docs]</a>    <span class="k">def</span> <span class="nf">OK</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Status.OK"><a class="viewcode-back" href="../../../status.html#milvus.Status.OK">[docs]</a>    <span class="k">def</span> <span class="nf">OK</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">code</span> <span class="o">==</span> <span class="n">Status</span><span class="o">.</span><span class="n">SUCCESS</span></div></div>
 
 
-<div class="viewcode-block" id="IndexType"><a class="viewcode-back" href="../../../milvus.html#milvus.IndexType">[docs]</a><span class="k">class</span> <span class="nc">IndexType</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+<div class="viewcode-block" id="IndexType"><a class="viewcode-back" href="../../../types.html#milvus.IndexType">[docs]</a><span class="k">class</span> <span class="nc">IndexType</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
     <span class="n">INVALID</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">FLAT</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">IVFLAT</span> <span class="o">=</span> <span class="mi">2</span>
     <span class="n">IVF_SQ8</span> <span class="o">=</span> <span class="mi">3</span>
-    <span class="n">MIX_NSG</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="c1"># change index name: MIX_NSG -&gt; NSG</span>
+    <span class="n">NSG</span> <span class="o">=</span> <span class="mi">4</span>
     <span class="n">IVF_SQ8H</span> <span class="o">=</span> <span class="mi">5</span>
     <span class="n">IVF_PQ</span> <span class="o">=</span> <span class="mi">6</span>
 
@@ -112,7 +113,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name_</span></div>
 
 
-<div class="viewcode-block" id="MetricType"><a class="viewcode-back" href="../../../milvus.html#milvus.MetricType">[docs]</a><span class="k">class</span> <span class="nc">MetricType</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+<div class="viewcode-block" id="MetricType"><a class="viewcode-back" href="../../../types.html#milvus.MetricType">[docs]</a><span class="k">class</span> <span class="nc">MetricType</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
     <span class="n">L2</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">IP</span> <span class="o">=</span> <span class="mi">2</span>
 

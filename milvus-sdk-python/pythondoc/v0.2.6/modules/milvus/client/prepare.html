@@ -39,15 +39,15 @@
 <span class="kn">from</span> <span class="nn">.abstract</span> <span class="k">import</span> <span class="n">Range</span>
 
 
-<div class="viewcode-block" id="Prepare"><a class="viewcode-back" href="../../../milvus.html#milvus.Prepare">[docs]</a><span class="k">class</span> <span class="nc">Prepare</span><span class="p">:</span>
+<div class="viewcode-block" id="Prepare"><a class="viewcode-back" href="../../../assets.html#milvus.Prepare">[docs]</a><span class="k">class</span> <span class="nc">Prepare</span><span class="p">:</span>
 
-<div class="viewcode-block" id="Prepare.table_name"><a class="viewcode-back" href="../../../milvus.html#milvus.Prepare.table_name">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Prepare.table_name"><a class="viewcode-back" href="../../../assets.html#milvus.Prepare.table_name">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">table_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">table_name</span><span class="p">):</span>
 
         <span class="n">check_pass_param</span><span class="p">(</span><span class="n">table_name</span><span class="o">=</span><span class="n">table_name</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">grpc_types</span><span class="o">.</span><span class="n">TableName</span><span class="p">(</span><span class="n">table_name</span><span class="o">=</span><span class="n">table_name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Prepare.table_schema"><a class="viewcode-back" href="../../../milvus.html#milvus.Prepare.table_schema">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Prepare.table_schema"><a class="viewcode-back" href="../../../assets.html#milvus.Prepare.table_schema">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">table_schema</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        :type param: dict</span>
@@ -89,7 +89,7 @@
                                       <span class="n">index_file_size</span><span class="o">=</span><span class="n">_param</span><span class="p">[</span><span class="s2">&quot;index_file_size&quot;</span><span class="p">],</span>
                                       <span class="n">metric_type</span><span class="o">=</span><span class="n">_param</span><span class="p">[</span><span class="s2">&quot;metric_type&quot;</span><span class="p">])</span></div>
 
-<div class="viewcode-block" id="Prepare.range"><a class="viewcode-back" href="../../../milvus.html#milvus.Prepare.range">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Prepare.range"><a class="viewcode-back" href="../../../assets.html#milvus.Prepare.range">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">range</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parser a &#39;yyyy-mm-dd&#39; like str or date/datetime object to Range object</span>
@@ -110,7 +110,7 @@
         <span class="k">return</span> <span class="n">grpc_types</span><span class="o">.</span><span class="n">Range</span><span class="p">(</span><span class="n">start_value</span><span class="o">=</span><span class="n">temp</span><span class="o">.</span><span class="n">start_date</span><span class="p">,</span>
                                 <span class="n">end_value</span><span class="o">=</span><span class="n">temp</span><span class="o">.</span><span class="n">end_date</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Prepare.ranges"><a class="viewcode-back" href="../../../milvus.html#milvus.Prepare.ranges">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Prepare.ranges"><a class="viewcode-back" href="../../../assets.html#milvus.Prepare.ranges">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">ranges</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">ranges</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        prepare query_ranges</span>
@@ -131,7 +131,7 @@
                 <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_range</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">res</span></div>
 
-<div class="viewcode-block" id="Prepare.insert_param"><a class="viewcode-back" href="../../../milvus.html#milvus.Prepare.insert_param">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Prepare.insert_param"><a class="viewcode-back" href="../../../assets.html#milvus.Prepare.insert_param">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">insert_param</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">vectors</span><span class="p">,</span> <span class="n">partition_tag</span><span class="p">,</span> <span class="n">ids</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
         <span class="n">check_pass_param</span><span class="p">(</span><span class="n">table_name</span><span class="o">=</span><span class="n">table_name</span><span class="p">,</span> <span class="n">partition_tag</span><span class="o">=</span><span class="n">partition_tag</span><span class="p">)</span>
@@ -157,7 +157,7 @@
 
         <span class="k">return</span> <span class="n">_param</span></div>
 
-<div class="viewcode-block" id="Prepare.index"><a class="viewcode-back" href="../../../milvus.html#milvus.Prepare.index">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Prepare.index"><a class="viewcode-back" href="../../../assets.html#milvus.Prepare.index">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">index_type</span><span class="p">,</span> <span class="n">nlist</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
@@ -173,7 +173,7 @@
 
         <span class="k">return</span> <span class="n">grpc_types</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">index_type</span><span class="o">=</span><span class="n">index_type</span><span class="p">,</span> <span class="n">nlist</span><span class="o">=</span><span class="n">nlist</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Prepare.index_param"><a class="viewcode-back" href="../../../milvus.html#milvus.Prepare.index_param">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Prepare.index_param"><a class="viewcode-back" href="../../../assets.html#milvus.Prepare.index_param">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">index_param</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">index_param</span><span class="p">):</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">index_param</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
@@ -189,7 +189,7 @@
                                      <span class="n">table_name</span><span class="o">=</span><span class="n">table_name</span><span class="p">,</span>
                                      <span class="n">index</span><span class="o">=</span><span class="n">_index</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Prepare.search_param"><a class="viewcode-back" href="../../../milvus.html#milvus.Prepare.search_param">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Prepare.search_param"><a class="viewcode-back" href="../../../assets.html#milvus.Prepare.search_param">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">search_param</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">topk</span><span class="p">,</span> <span class="n">nprobe</span><span class="p">,</span> <span class="n">query_records</span><span class="p">,</span> <span class="n">query_ranges</span><span class="p">,</span> <span class="n">partitions</span><span class="p">):</span>
         <span class="n">query_ranges</span> <span class="o">=</span> <span class="n">Prepare</span><span class="o">.</span><span class="n">ranges</span><span class="p">(</span><span class="n">query_ranges</span><span class="p">)</span> <span class="k">if</span> <span class="n">query_ranges</span> <span class="k">else</span> <span class="kc">None</span>
 
@@ -218,7 +218,7 @@
 
         <span class="k">return</span> <span class="n">search_param</span></div>
 
-<div class="viewcode-block" id="Prepare.search_vector_in_files_param"><a class="viewcode-back" href="../../../milvus.html#milvus.Prepare.search_vector_in_files_param">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Prepare.search_vector_in_files_param"><a class="viewcode-back" href="../../../assets.html#milvus.Prepare.search_vector_in_files_param">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">search_vector_in_files_param</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">query_records</span><span class="p">,</span>
                                      <span class="n">query_ranges</span><span class="p">,</span> <span class="n">topk</span><span class="p">,</span> <span class="n">nprobe</span><span class="p">,</span> <span class="n">ids</span><span class="p">):</span>
         <span class="n">_search_param</span> <span class="o">=</span> <span class="n">Prepare</span><span class="o">.</span><span class="n">search_param</span><span class="p">(</span><span class="n">table_name</span><span class="p">,</span> <span class="n">topk</span><span class="p">,</span> <span class="n">nprobe</span><span class="p">,</span> <span class="n">query_records</span><span class="p">,</span>
@@ -229,13 +229,13 @@
             <span class="n">search_param</span><span class="o">=</span><span class="n">_search_param</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="Prepare.cmd"><a class="viewcode-back" href="../../../milvus.html#milvus.Prepare.cmd">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Prepare.cmd"><a class="viewcode-back" href="../../../assets.html#milvus.Prepare.cmd">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">cmd</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">cmd</span><span class="p">):</span>
         <span class="n">check_pass_param</span><span class="p">(</span><span class="n">cmd</span><span class="o">=</span><span class="n">cmd</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">grpc_types</span><span class="o">.</span><span class="n">Command</span><span class="p">(</span><span class="n">cmd</span><span class="o">=</span><span class="n">cmd</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Prepare.delete_param"><a class="viewcode-back" href="../../../milvus.html#milvus.Prepare.delete_param">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Prepare.delete_param"><a class="viewcode-back" href="../../../assets.html#milvus.Prepare.delete_param">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">delete_param</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">):</span>
 
         <span class="n">range_</span> <span class="o">=</span> <span class="n">Prepare</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
@@ -244,7 +244,7 @@
 
         <span class="k">return</span> <span class="n">grpc_types</span><span class="o">.</span><span class="n">DeleteByDateParam</span><span class="p">(</span><span class="nb">range</span><span class="o">=</span><span class="n">range_</span><span class="p">,</span> <span class="n">table_name</span><span class="o">=</span><span class="n">table_name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Prepare.partition_param"><a class="viewcode-back" href="../../../milvus.html#milvus.Prepare.partition_param">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Prepare.partition_param"><a class="viewcode-back" href="../../../assets.html#milvus.Prepare.partition_param">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">partition_param</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">partition_name</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
 
         <span class="n">check_pass_param</span><span class="p">(</span>

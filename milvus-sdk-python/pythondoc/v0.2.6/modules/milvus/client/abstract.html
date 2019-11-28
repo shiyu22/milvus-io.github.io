@@ -42,7 +42,7 @@
 <span class="kn">from</span> <span class="nn">.types</span> <span class="k">import</span> <span class="n">IndexType</span>
 
 
-<div class="viewcode-block" id="TableSchema"><a class="viewcode-back" href="../../../milvus.client.html#milvus.client.abstract.TableSchema">[docs]</a><span class="k">class</span> <span class="nc">TableSchema</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">TableSchema</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">dimension</span><span class="p">,</span> <span class="n">index_file_size</span><span class="p">,</span> <span class="n">metric_type</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Table Schema</span>
@@ -74,10 +74,10 @@
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">attr_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">=</span><span class="si">%r</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
-        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">(</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">attr_list</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">(</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">attr_list</span><span class="p">))</span>
 
 
-<div class="viewcode-block" id="Range"><a class="viewcode-back" href="../../../milvus.client.html#milvus.client.abstract.Range">[docs]</a><span class="k">class</span> <span class="nc">Range</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">Range</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Range information</span>
 
@@ -103,7 +103,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">end_date</span> <span class="o">=</span> <span class="n">end_date</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ParamError</span><span class="p">(</span><span class="s2">&quot;The start-date should be smaller&quot;</span>
-                             <span class="s2">&quot; than or equal to end-date!&quot;</span><span class="p">)</span></div>
+                             <span class="s2">&quot; than or equal to end-date!&quot;</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="QueryResult"><a class="viewcode-back" href="../../../results.html#milvus.client.abstract.QueryResult">[docs]</a><span class="k">class</span> <span class="nc">QueryResult</span><span class="p">:</span>
@@ -189,6 +189,8 @@
         <span class="n">id_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">_raw</span><span class="o">.</span><span class="n">ids</span><span class="p">)</span>
         <span class="n">id_col</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">id_list</span><span class="p">)</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nq</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nq</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
 
+        <span class="k">if</span> <span class="n">id_col</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span>
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">id_list</span><span class="p">),</span> <span class="n">id_col</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_id_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">id_list</span><span class="p">[</span><span class="n">i</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">id_col</span><span class="p">])</span>
@@ -282,7 +284,7 @@
                     <span class="n">middle</span> <span class="o">+=</span> <span class="s2">&quot;,</span><span class="se">\n</span><span class="s2">   ...&quot;</span>
                     <span class="n">middle</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">   </span><span class="si">%s</span><span class="s2"> ]</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">lam</span><span class="p">(</span><span class="n">topk</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
                 <span class="k">else</span><span class="p">:</span>
-                   <span class="n">middle</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">+</span> <span class="s2">&quot; [ </span><span class="si">%s</span><span class="s2"> ] </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="s2">&quot;,</span><span class="se">\n</span><span class="s2">   &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="n">topk</span><span class="p">))</span>
+                    <span class="n">middle</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">+</span> <span class="s2">&quot; [ </span><span class="si">%s</span><span class="s2"> ] </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="s2">&quot;,</span><span class="se">\n</span><span class="s2">   &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="n">topk</span><span class="p">))</span>
 
             <span class="n">spaces</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;        ......</span>
 <span class="s2">            ......&quot;&quot;&quot;</span>
@@ -298,7 +300,7 @@
         <span class="k">return</span> <span class="s2">&quot;[</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s2">]&quot;</span> <span class="o">%</span> <span class="s2">&quot;,</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">str_out_list</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="IndexParam"><a class="viewcode-back" href="../../../milvus.client.html#milvus.client.abstract.IndexParam">[docs]</a><span class="k">class</span> <span class="nc">IndexParam</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">IndexParam</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Index Param</span>
 
@@ -338,10 +340,10 @@
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">attr_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">=</span><span class="si">%r</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
                      <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
-        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">(</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">attr_list</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">(</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">attr_list</span><span class="p">))</span>
 
 
-<div class="viewcode-block" id="PartitionParam"><a class="viewcode-back" href="../../../milvus.client.html#milvus.client.abstract.PartitionParam">[docs]</a><span class="k">class</span> <span class="nc">PartitionParam</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">PartitionParam</span><span class="p">:</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">partition_name</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">table_name</span> <span class="o">=</span> <span class="n">table_name</span>
@@ -351,21 +353,21 @@
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">attr_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">=</span><span class="si">%r</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
                      <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
-        <span class="k">return</span> <span class="s1">&#39;(</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">attr_list</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="s1">&#39;(</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">attr_list</span><span class="p">))</span>
 
 
 <span class="k">def</span> <span class="nf">_abstract</span><span class="p">():</span>
     <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;You need to override this function&#39;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="ConnectIntf"><a class="viewcode-back" href="../../../milvus.client.html#milvus.client.abstract.ConnectIntf">[docs]</a><span class="k">class</span> <span class="nc">ConnectIntf</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">ConnectIntf</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;SDK client abstract class</span>
 
 <span class="sd">    Connection is a abstract class</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="ConnectIntf.connect"><a class="viewcode-back" href="../../../milvus.client.html#milvus.client.abstract.ConnectIntf.connect">[docs]</a>    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">uri</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">uri</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Connect method should be called before any operations</span>
 <span class="sd">        Server will be connected after connect return OK</span>
@@ -385,27 +387,27 @@
 
 <span class="sd">        :return: Status,  indicate if connect is successful</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_abstract</span><span class="p">()</span></div>
+        <span class="n">_abstract</span><span class="p">()</span>
 
-<div class="viewcode-block" id="ConnectIntf.connected"><a class="viewcode-back" href="../../../milvus.client.html#milvus.client.abstract.ConnectIntf.connected">[docs]</a>    <span class="k">def</span> <span class="nf">connected</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">connected</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        connected, connection status</span>
 <span class="sd">        Should be implemented</span>
 
 <span class="sd">        :return: Status,  indicate if connect is successful</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_abstract</span><span class="p">()</span></div>
+        <span class="n">_abstract</span><span class="p">()</span>
 
-<div class="viewcode-block" id="ConnectIntf.disconnect"><a class="viewcode-back" href="../../../milvus.client.html#milvus.client.abstract.ConnectIntf.disconnect">[docs]</a>    <span class="k">def</span> <span class="nf">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Disconnect, server will be disconnected after disconnect return SUCCESS</span>
 <span class="sd">        Should be implemented</span>
 
 <span class="sd">        :return: Status,  indicate if connect is successful</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_abstract</span><span class="p">()</span></div>
+        <span class="n">_abstract</span><span class="p">()</span>
 
-<div class="viewcode-block" id="ConnectIntf.create_table"><a class="viewcode-back" href="../../../milvus.client.html#milvus.client.abstract.ConnectIntf.create_table">[docs]</a>    <span class="k">def</span> <span class="nf">create_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">create_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create table</span>
 <span class="sd">        Should be implemented</span>
@@ -418,9 +420,9 @@
 
 <span class="sd">        :return: Status, indicate if connect is successful</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_abstract</span><span class="p">()</span></div>
+        <span class="n">_abstract</span><span class="p">()</span>
 
-<div class="viewcode-block" id="ConnectIntf.has_table"><a class="viewcode-back" href="../../../milvus.client.html#milvus.client.abstract.ConnectIntf.has_table">[docs]</a>    <span class="k">def</span> <span class="nf">has_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">has_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        This method is used to test table existence.</span>
@@ -436,9 +438,9 @@
 <span class="sd">            has_table: bool, if given table_name exists</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_abstract</span><span class="p">()</span></div>
+        <span class="n">_abstract</span><span class="p">()</span>
 
-<div class="viewcode-block" id="ConnectIntf.delete_table"><a class="viewcode-back" href="../../../milvus.client.html#milvus.client.abstract.ConnectIntf.delete_table">[docs]</a>    <span class="k">def</span> <span class="nf">delete_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">delete_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Delete table</span>
 <span class="sd">        Should be implemented</span>
@@ -451,9 +453,9 @@
 
 <span class="sd">        :return: Status, indicate if connect is successful</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_abstract</span><span class="p">()</span></div>
+        <span class="n">_abstract</span><span class="p">()</span>
 
-<div class="viewcode-block" id="ConnectIntf.add_vectors"><a class="viewcode-back" href="../../../milvus.client.html#milvus.client.abstract.ConnectIntf.add_vectors">[docs]</a>    <span class="k">def</span> <span class="nf">add_vectors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">records</span><span class="p">,</span> <span class="n">ids</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">add_vectors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">records</span><span class="p">,</span> <span class="n">ids</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add vectors to table</span>
 <span class="sd">        Should be implemented</span>
@@ -474,9 +476,9 @@
 <span class="sd">            Status : indicate if vectors inserted successfully</span>
 <span class="sd">            ids :list of id, after inserted every vector is given a id</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_abstract</span><span class="p">()</span></div>
+        <span class="n">_abstract</span><span class="p">()</span>
 
-<div class="viewcode-block" id="ConnectIntf.search_vectors"><a class="viewcode-back" href="../../../milvus.client.html#milvus.client.abstract.ConnectIntf.search_vectors">[docs]</a>    <span class="k">def</span> <span class="nf">search_vectors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">top_k</span><span class="p">,</span> <span class="n">nprobe</span><span class="p">,</span> <span class="n">query_records</span><span class="p">,</span> <span class="n">query_ranges</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">search_vectors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">top_k</span><span class="p">,</span> <span class="n">nprobe</span><span class="p">,</span> <span class="n">query_records</span><span class="p">,</span> <span class="n">query_ranges</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Query vectors in a table</span>
 <span class="sd">        Should be implemented</span>
@@ -498,9 +500,9 @@
 <span class="sd">            Status:  indicate if query is successful</span>
 <span class="sd">            query_results: list[TopKQueryResult]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_abstract</span><span class="p">()</span></div>
+        <span class="n">_abstract</span><span class="p">()</span>
 
-<div class="viewcode-block" id="ConnectIntf.search_vectors_in_files"><a class="viewcode-back" href="../../../milvus.client.html#milvus.client.abstract.ConnectIntf.search_vectors_in_files">[docs]</a>    <span class="k">def</span> <span class="nf">search_vectors_in_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">file_ids</span><span class="p">,</span> <span class="n">query_records</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">search_vectors_in_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">file_ids</span><span class="p">,</span> <span class="n">query_records</span><span class="p">,</span>
                                 <span class="n">top_k</span><span class="p">,</span> <span class="n">nprobe</span><span class="p">,</span> <span class="n">query_ranges</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Query vectors in a table, query vector in specified files</span>
@@ -526,9 +528,9 @@
 <span class="sd">            Status:  indicate if query is successful</span>
 <span class="sd">            query_results: list[TopKQueryResult]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_abstract</span><span class="p">()</span></div>
+        <span class="n">_abstract</span><span class="p">()</span>
 
-<div class="viewcode-block" id="ConnectIntf.describe_table"><a class="viewcode-back" href="../../../milvus.client.html#milvus.client.abstract.ConnectIntf.describe_table">[docs]</a>    <span class="k">def</span> <span class="nf">describe_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">describe_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Show table information</span>
 <span class="sd">        Should be implemented</span>
@@ -543,9 +545,9 @@
 <span class="sd">            Status: indicate if query is successful</span>
 <span class="sd">            table_schema: TableSchema, given when operation is successful</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_abstract</span><span class="p">()</span></div>
+        <span class="n">_abstract</span><span class="p">()</span>
 
-<div class="viewcode-block" id="ConnectIntf.get_table_row_count"><a class="viewcode-back" href="../../../milvus.client.html#milvus.client.abstract.ConnectIntf.get_table_row_count">[docs]</a>    <span class="k">def</span> <span class="nf">get_table_row_count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_table_row_count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get table row count</span>
 <span class="sd">        Should be implemented</span>
@@ -560,9 +562,9 @@
 <span class="sd">            Status: indicate if operation is successful</span>
 <span class="sd">            count: int, table row count</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_abstract</span><span class="p">()</span></div>
+        <span class="n">_abstract</span><span class="p">()</span>
 
-<div class="viewcode-block" id="ConnectIntf.show_tables"><a class="viewcode-back" href="../../../milvus.client.html#milvus.client.abstract.ConnectIntf.show_tables">[docs]</a>    <span class="k">def</span> <span class="nf">show_tables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">show_tables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Show all tables in database</span>
 <span class="sd">        should be implemented</span>
@@ -574,9 +576,9 @@
 <span class="sd">            Status: indicate if this operation is successful</span>
 <span class="sd">            tables: list[str], list of table names</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_abstract</span><span class="p">()</span></div>
+        <span class="n">_abstract</span><span class="p">()</span>
 
-<div class="viewcode-block" id="ConnectIntf.create_index"><a class="viewcode-back" href="../../../milvus.client.html#milvus.client.abstract.ConnectIntf.create_index">[docs]</a>    <span class="k">def</span> <span class="nf">create_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">create_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create specified index in a table</span>
 <span class="sd">        should be implemented</span>
@@ -600,9 +602,9 @@
 
 <span class="sd">        :rtype: Status</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_abstract</span><span class="p">()</span></div>
+        <span class="n">_abstract</span><span class="p">()</span>
 
-<div class="viewcode-block" id="ConnectIntf.client_version"><a class="viewcode-back" href="../../../milvus.client.html#milvus.client.abstract.ConnectIntf.client_version">[docs]</a>    <span class="k">def</span> <span class="nf">client_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">client_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Provide client version</span>
 <span class="sd">        should be implemented</span>
@@ -614,9 +616,9 @@
 
 <span class="sd">        :rtype: (Status, str)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_abstract</span><span class="p">()</span></div>
+        <span class="n">_abstract</span><span class="p">()</span>
 
-<div class="viewcode-block" id="ConnectIntf.server_version"><a class="viewcode-back" href="../../../milvus.client.html#milvus.client.abstract.ConnectIntf.server_version">[docs]</a>    <span class="k">def</span> <span class="nf">server_version</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">server_version</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Provide server version</span>
 <span class="sd">        should be implemented</span>
@@ -631,9 +633,9 @@
 
 <span class="sd">        :rtype: (Status, str)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_abstract</span><span class="p">()</span></div>
+        <span class="n">_abstract</span><span class="p">()</span>
 
-<div class="viewcode-block" id="ConnectIntf.server_status"><a class="viewcode-back" href="../../../milvus.client.html#milvus.client.abstract.ConnectIntf.server_status">[docs]</a>    <span class="k">def</span> <span class="nf">server_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">server_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Provide server status. When cmd !=&#39;version&#39;, provide &#39;OK&#39;</span>
 <span class="sd">        should be implemented</span>
@@ -648,9 +650,9 @@
 
 <span class="sd">        :rtype: (Status, str)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_abstract</span><span class="p">()</span></div>
+        <span class="n">_abstract</span><span class="p">()</span>
 
-<div class="viewcode-block" id="ConnectIntf.preload_table"><a class="viewcode-back" href="../../../milvus.client.html#milvus.client.abstract.ConnectIntf.preload_table">[docs]</a>    <span class="k">def</span> <span class="nf">preload_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">preload_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        load table to memory cache in advance</span>
 <span class="sd">        should be implemented</span>
@@ -667,9 +669,9 @@
 <span class="sd">        ：:rtype: Status</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">_abstract</span><span class="p">()</span></div>
+        <span class="n">_abstract</span><span class="p">()</span>
 
-<div class="viewcode-block" id="ConnectIntf.describe_index"><a class="viewcode-back" href="../../../milvus.client.html#milvus.client.abstract.ConnectIntf.describe_index">[docs]</a>    <span class="k">def</span> <span class="nf">describe_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">describe_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Show index information</span>
 <span class="sd">        should be implemented</span>
@@ -688,9 +690,9 @@
 <span class="sd">        :rtype: (Status, TableSchema)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">_abstract</span><span class="p">()</span></div>
+        <span class="n">_abstract</span><span class="p">()</span>
 
-<div class="viewcode-block" id="ConnectIntf.drop_index"><a class="viewcode-back" href="../../../milvus.client.html#milvus.client.abstract.ConnectIntf.drop_index">[docs]</a>    <span class="k">def</span> <span class="nf">drop_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">drop_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Show index information</span>
 <span class="sd">        should be implemented</span>
@@ -707,7 +709,7 @@
 <span class="sd">        ：:rtype: Status</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">_abstract</span><span class="p">()</span></div></div>
+        <span class="n">_abstract</span><span class="p">()</span>
 </pre></div>
 
           </div>

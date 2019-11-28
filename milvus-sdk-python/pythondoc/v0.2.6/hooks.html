@@ -52,6 +52,7 @@
 <dt id="milvus.client.hooks.BaseSearchHook">
 <em class="property">class </em><code class="sig-prename descclassname">milvus.client.hooks.</code><code class="sig-name descname">BaseSearchHook</code><a class="reference internal" href="modules/milvus/client/hooks/abstract.html#BaseSearchHook"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.hooks.BaseSearchHook" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">milvus.client.hooks.abstract.AbstractHook</span></code></p>
+<p>Base class of search hook. Inherited from hook class of search</p>
 <dl class="method">
 <dt id="milvus.client.hooks.BaseSearchHook.aft_search">
 <code class="sig-name descname">aft_search</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/hooks/abstract.html#BaseSearchHook.aft_search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.hooks.BaseSearchHook.aft_search" title="Permalink to this definition">¶</a></dt>
@@ -70,7 +71,7 @@
 <dd><p>Indicate if deal with response from server.
 return bool variables. False default</p>
 <p>When return True, the method tell caller to return raw response received from
-server directly.</p>
+server directly. In this situation, method <cite>handle_response</cite> will not be invoked.</p>
 </dd></dl>
 
 <dl class="method">
@@ -78,12 +79,6 @@ server directly.</p>
 <code class="sig-name descname">pre_search</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/hooks/abstract.html#BaseSearchHook.pre_search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.hooks.BaseSearchHook.pre_search" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method allow user to prepare for starting searching vectors.
 Called before searching vectors on server.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="milvus.client.hooks.BaseSearchHook.prepare_data">
-<code class="sig-name descname">prepare_data</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/hooks/abstract.html#BaseSearchHook.prepare_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.client.hooks.BaseSearchHook.prepare_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Prepare grpc data</p>
 </dd></dl>
 
 </dd></dl>

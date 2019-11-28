@@ -36,12 +36,17 @@
 
 
 <div class="viewcode-block" id="BaseSearchHook"><a class="viewcode-back" href="../../../../hooks.html#milvus.client.hooks.BaseSearchHook">[docs]</a><span class="k">class</span> <span class="nc">BaseSearchHook</span><span class="p">(</span><span class="n">AbstractHook</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base class of search hook. Inherited from hook class of search</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="BaseSearchHook.prepare_data"><a class="viewcode-back" href="../../../../hooks.html#milvus.client.hooks.BaseSearchHook.prepare_data">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Prepare grpc data</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
+    <span class="c1"># def prepare_data(self, *args, **kwargs):</span>
+    <span class="c1">#     &quot;&quot;&quot;</span>
+    <span class="c1">#     Prepare grpc data.</span>
+    <span class="c1">#</span>
+    <span class="c1">#     This is an EXPERIMENTAL API.</span>
+    <span class="c1">#     &quot;&quot;&quot;</span>
+    <span class="c1">#     pass</span>
 
 <div class="viewcode-block" id="BaseSearchHook.pre_search"><a class="viewcode-back" href="../../../../hooks.html#milvus.client.hooks.BaseSearchHook.pre_search">[docs]</a>    <span class="k">def</span> <span class="nf">pre_search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -62,7 +67,7 @@
 <span class="sd">        return bool variables. False default</span>
 
 <span class="sd">        When return True, the method tell caller to return raw response received from</span>
-<span class="sd">        server directly.</span>
+<span class="sd">        server directly. In this situation, method `handle_response` will not be invoked.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="kc">False</span></div>
 

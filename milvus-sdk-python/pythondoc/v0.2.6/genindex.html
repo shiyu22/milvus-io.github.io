@@ -40,6 +40,7 @@
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
  | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
  | <a href="#L"><strong>L</strong></a>
@@ -56,6 +57,10 @@
 </div>
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.add_vectors">add_vectors() (milvus.client.grpc_client.GrpcMilvus method)</a>
+</li>
+  </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="hooks.html#milvus.client.hooks.BaseSearchHook.aft_search">aft_search() (milvus.client.hooks.BaseSearchHook method)</a>
 </li>
@@ -83,15 +88,29 @@
 </li>
       <li><a href="exceptions.html#milvus.Status.CANNOT_CREATE_FOLDER">CANNOT_CREATE_FOLDER (milvus.Status attribute)</a>, <a href="status.html#milvus.Status.CANNOT_CREATE_FOLDER">[1]</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="exceptions.html#milvus.Status.CANNOT_DELETE_FILE">CANNOT_DELETE_FILE (milvus.Status attribute)</a>, <a href="status.html#milvus.Status.CANNOT_DELETE_FILE">[1]</a>
 </li>
       <li><a href="exceptions.html#milvus.Status.CANNOT_DELETE_FOLDER">CANNOT_DELETE_FOLDER (milvus.Status attribute)</a>, <a href="status.html#milvus.Status.CANNOT_DELETE_FOLDER">[1]</a>
 </li>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.client_version">client_version() (milvus.client.grpc_client.GrpcMilvus method)</a>
+</li>
       <li><a href="assets.html#milvus.Prepare.cmd">cmd() (milvus.Prepare class method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.connect">connect() (milvus.client.grpc_client.GrpcMilvus method)</a>
+</li>
       <li><a href="exceptions.html#milvus.Status.CONNECT_FAILED">CONNECT_FAILED (milvus.Status attribute)</a>, <a href="status.html#milvus.Status.CONNECT_FAILED">[1]</a>
+</li>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.connected">connected() (milvus.client.grpc_client.GrpcMilvus method)</a>
+</li>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.count_table">count_table() (milvus.client.grpc_client.GrpcMilvus method)</a>
+</li>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.create_index">create_index() (milvus.client.grpc_client.GrpcMilvus method)</a>
+</li>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.create_partition">create_partition() (milvus.client.grpc_client.GrpcMilvus method)</a>
+</li>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.create_table">create_table() (milvus.client.grpc_client.GrpcMilvus method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -101,9 +120,23 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="assets.html#milvus.Prepare.delete_param">delete_param() (milvus.Prepare class method)</a>
 </li>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.delete_table">delete_table() (milvus.client.grpc_client.GrpcMilvus method)</a>
+</li>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.describe_index">describe_index() (milvus.client.grpc_client.GrpcMilvus method)</a>
+</li>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.describe_table">describe_table() (milvus.client.grpc_client.GrpcMilvus method)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.disconnect">disconnect() (milvus.client.grpc_client.GrpcMilvus method)</a>
+</li>
       <li><a href="results.html#milvus.client.abstract.TopKQueryResult.distance_array">distance_array() (milvus.client.abstract.TopKQueryResult property)</a>
+</li>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.drop_index">drop_index() (milvus.client.grpc_client.GrpcMilvus method)</a>
+</li>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.drop_partition">drop_partition() (milvus.client.grpc_client.GrpcMilvus method)</a>
+</li>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.drop_table">drop_table() (milvus.client.grpc_client.GrpcMilvus method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -120,6 +153,18 @@
   </ul></td>
 </tr></table>
 
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.get_table_row_count">get_table_row_count() (milvus.client.grpc_client.GrpcMilvus method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus">GrpcMilvus (class in milvus.client.grpc_client)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="H">H</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -129,6 +174,10 @@
         <li><a href="hooks.html#milvus.client.hooks.BaseSearchHook.handle_response">(milvus.client.hooks.BaseSearchHook method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.has_table">has_table() (milvus.client.grpc_client.GrpcMilvus method)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -166,6 +215,8 @@
       <li><a href="assets.html#milvus.Prepare.index_param">index_param() (milvus.Prepare class method)</a>
 </li>
       <li><a href="types.html#milvus.IndexType">IndexType (class in milvus)</a>
+</li>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.insert">insert() (milvus.client.grpc_client.GrpcMilvus method)</a>
 </li>
       <li><a href="assets.html#milvus.Prepare.insert_param">insert_param() (milvus.Prepare class method)</a>
 </li>
@@ -243,6 +294,8 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="hooks.html#milvus.client.hooks.BaseSearchHook.pre_search">pre_search() (milvus.client.hooks.BaseSearchHook method)</a>
 </li>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.preload_table">preload_table() (milvus.client.grpc_client.GrpcMilvus method)</a>
+</li>
       <li><a href="assets.html#milvus.Prepare">Prepare (class in milvus)</a>
 </li>
   </ul></td>
@@ -275,15 +328,35 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.search">search() (milvus.client.grpc_client.GrpcMilvus method)</a>
+</li>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.search_in_files">search_in_files() (milvus.client.grpc_client.GrpcMilvus method)</a>
+</li>
       <li><a href="assets.html#milvus.Prepare.search_param">search_param() (milvus.Prepare class method)</a>
 </li>
       <li><a href="assets.html#milvus.Prepare.search_vector_in_files_param">search_vector_in_files_param() (milvus.Prepare class method)</a>
 </li>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.search_vectors">search_vectors() (milvus.client.grpc_client.GrpcMilvus method)</a>
+</li>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.search_vectors_in_files">search_vectors_in_files() (milvus.client.grpc_client.GrpcMilvus method)</a>
+</li>
       <li><a href="hooks.html#milvus.client.client_hooks.SearchHook">SearchHook (class in milvus.client.client_hooks)</a>
+</li>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.server_address">server_address() (milvus.client.grpc_client.GrpcMilvus property)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.server_status">server_status() (milvus.client.grpc_client.GrpcMilvus method)</a>
+</li>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.server_version">server_version() (milvus.client.grpc_client.GrpcMilvus method)</a>
+</li>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.set_hook">set_hook() (milvus.client.grpc_client.GrpcMilvus method)</a>
+</li>
       <li><a href="results.html#milvus.client.abstract.TopKQueryResult.shape">shape() (milvus.client.abstract.TopKQueryResult property)</a>
+</li>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.show_partitions">show_partitions() (milvus.client.grpc_client.GrpcMilvus method)</a>
+</li>
+      <li><a href="assets.html#milvus.client.grpc_client.GrpcMilvus.show_tables">show_tables() (milvus.client.grpc_client.GrpcMilvus method)</a>
 </li>
       <li><a href="exceptions.html#milvus.Status">Status (class in milvus)</a>, <a href="status.html#milvus.Status">[1]</a>
 </li>

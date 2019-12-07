@@ -153,7 +153,8 @@
             <span class="k">if</span> <span class="n">is_legal_array</span><span class="p">(</span><span class="n">vector</span><span class="p">):</span>
                 <span class="n">_param</span><span class="o">.</span><span class="n">row_record_array</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">vector_data</span><span class="o">=</span><span class="n">vector</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="n">ParamError</span><span class="p">(</span><span class="s1">&#39;Vectors should be 2-dim array!&#39;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">ParamError</span><span class="p">(</span><span class="s1">&#39;A vector must be a non-empty, 2-dimensional array and &#39;</span>
+                                 <span class="s1">&#39;must contain only elements with the float data type.&#39;</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">_param</span></div>
 

@@ -33,9 +33,6 @@
   <h1>Source code for milvus.client.grpc_client</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="k">import</span> <span class="n">urlparse</span>
 <span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">collections</span>
-<span class="kn">import</span> <span class="nn">uuid</span>
-<span class="kn">import</span> <span class="nn">os</span>
 
 <span class="kn">import</span> <span class="nn">grpc</span>
 <span class="kn">from</span> <span class="nn">grpc._cython</span> <span class="k">import</span> <span class="n">cygrpc</span>
@@ -60,51 +57,7 @@
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">_ClientCallDetails</span><span class="p">(</span>
-    <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span>
-        <span class="s1">&#39;_ClientCallDetails&#39;</span><span class="p">,</span>
-        <span class="p">(</span><span class="s1">&#39;method&#39;</span><span class="p">,</span> <span class="s1">&#39;timeout&#39;</span><span class="p">,</span> <span class="s1">&#39;metadata&#39;</span><span class="p">,</span> <span class="s1">&#39;credentials&#39;</span><span class="p">,</span> <span class="s1">&#39;wait_for_ready&#39;</span><span class="p">)),</span>
-    <span class="n">grpc</span><span class="o">.</span><span class="n">ClientCallDetails</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Describes an RPC to be invoked.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
-
-
-<span class="k">class</span> <span class="nc">RequestIDClientInterceptor</span><span class="p">(</span><span class="n">grpc</span><span class="o">.</span><span class="n">UnaryUnaryClientInterceptor</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Client interceptor. Add request id into metadata.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
-
-    <span class="k">def</span> <span class="nf">__generate_request_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        generate request id combined with rand uuid and process id</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid1</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&quot;-&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">())</span>
-
-    <span class="k">def</span> <span class="nf">intercept_unary_unary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">continuation</span><span class="p">,</span> <span class="n">client_call_details</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
-        <span class="n">rid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__generate_request_id</span><span class="p">()</span>
-        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Sending RPC request, &quot;</span>
-                    <span class="s2">&quot;Method: </span><span class="si">%s</span><span class="s2">, Request ID: </span><span class="si">%s</span><span class="s2">.&quot;</span><span class="p">,</span> <span class="n">client_call_details</span><span class="o">.</span><span class="n">method</span><span class="p">,</span> <span class="n">rid</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-
-        <span class="c1"># Add request into client call details, aka, metadata.</span>
-        <span class="n">metadata</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">if</span> <span class="n">client_call_details</span><span class="o">.</span><span class="n">metadata</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">metadata</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">client_call_details</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
-        <span class="n">metadata</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s2">&quot;request_id&quot;</span><span class="p">,</span> <span class="n">rid</span><span class="p">))</span>
-
-        <span class="n">client_call_details</span> <span class="o">=</span> <span class="n">_ClientCallDetails</span><span class="p">(</span>
-            <span class="n">client_call_details</span><span class="o">.</span><span class="n">method</span><span class="p">,</span> <span class="n">client_call_details</span><span class="o">.</span><span class="n">timeout</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span>
-            <span class="n">client_call_details</span><span class="o">.</span><span class="n">credentials</span><span class="p">,</span> <span class="n">client_call_details</span><span class="o">.</span><span class="n">wait_for_ready</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">continuation</span><span class="p">(</span><span class="n">client_call_details</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
-
-
-<span class="k">class</span> <span class="nc">GrpcMilvus</span><span class="p">(</span><span class="n">ConnectIntf</span><span class="p">):</span>
-
+<div class="viewcode-block" id="GrpcMilvus"><a class="viewcode-back" href="../../../assets.html#milvus.GrpcMilvus">[docs]</a><span class="k">class</span> <span class="nc">GrpcMilvus</span><span class="p">(</span><span class="n">ConnectIntf</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stub</span> <span class="o">=</span> <span class="kc">None</span>
@@ -117,7 +70,7 @@
 
         <span class="c1"># set server uri if object is initialized with parameter</span>
         <span class="n">_uri</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;uri&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="n">_</span> <span class="o">=</span> <span class="p">(</span><span class="n">host</span> <span class="ow">or</span> <span class="n">port</span> <span class="ow">or</span> <span class="n">_uri</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_uri</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">_</span> <span class="o">=</span> <span class="p">(</span><span class="n">host</span> <span class="ow">or</span> <span class="n">port</span> <span class="ow">or</span> <span class="n">_uri</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_uri</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">uri</span><span class="o">=</span><span class="n">_uri</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">attr_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">=</span><span class="si">%r</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
@@ -135,7 +88,9 @@
 
     <span class="k">def</span> <span class="nf">_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create a channel and a stub</span>
+<span class="sd">        Create a grpc channel and a stub</span>
+
+<span class="sd">        :raises: NotConnectError</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -162,6 +117,8 @@
     <span class="k">def</span> <span class="nf">_set_uri</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set server network address</span>
+<span class="sd">        </span>
+<span class="sd">        :raises: ParamError</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">host</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -200,16 +157,13 @@
             <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span>
 
         <span class="c1"># set transport unlimited</span>
-        <span class="n">_channel</span> <span class="o">=</span> <span class="n">grpc</span><span class="o">.</span><span class="n">insecure_channel</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span> <span class="o">=</span> <span class="n">grpc</span><span class="o">.</span><span class="n">insecure_channel</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_uri</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">GRPC_ADDRESS</span><span class="p">,</span>
             <span class="n">options</span><span class="o">=</span><span class="p">[(</span><span class="n">cygrpc</span><span class="o">.</span><span class="n">ChannelArgKey</span><span class="o">.</span><span class="n">max_send_message_length</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span>
                      <span class="p">(</span><span class="n">cygrpc</span><span class="o">.</span><span class="n">ChannelArgKey</span><span class="o">.</span><span class="n">max_receive_message_length</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
         <span class="p">)</span>
 
-        <span class="c1"># config intercept channel</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span> <span class="o">=</span> <span class="n">grpc</span><span class="o">.</span><span class="n">intercept_channel</span><span class="p">(</span><span class="n">_channel</span><span class="p">,</span> <span class="n">RequestIDClientInterceptor</span><span class="p">())</span>
-
-    <span class="k">def</span> <span class="nf">set_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="GrpcMilvus.set_hook"><a class="viewcode-back" href="../../../assets.html#milvus.GrpcMilvus.set_hook">[docs]</a>    <span class="k">def</span> <span class="nf">set_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        specify client hooks.</span>
 <span class="sd">        The client hooks are used in methods which interact with server.</span>
@@ -233,7 +187,7 @@
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">_search_file_hook</span><span class="p">,</span> <span class="n">BaseSearchHook</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="n">ParamError</span><span class="p">(</span><span class="s2">&quot;search hook must be a subclass of `BaseSearchHook`&quot;</span><span class="p">)</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">_search_file_hook</span> <span class="o">=</span> <span class="n">_search_file_hook</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_search_file_hook</span> <span class="o">=</span> <span class="n">_search_file_hook</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">server_address</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -242,7 +196,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_uri</span>
 
-    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">uri</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="GrpcMilvus.connect"><a class="viewcode-back" href="../../../assets.html#milvus.GrpcMilvus.connect">[docs]</a>    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">uri</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Connect method should be called before any operations.</span>
 <span class="sd">        Server will be connected after connect return OK</span>
@@ -261,6 +215,8 @@
 
 <span class="sd">        :return: Status, indicate if connect is successful</span>
 <span class="sd">        :rtype: Status</span>
+<span class="sd">        </span>
+<span class="sd">        :raises: NotConnectError</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">connected</span><span class="p">():</span>
             <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;You have already connected!&quot;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="n">Status</span><span class="o">.</span><span class="n">CONNECT_FAILED</span><span class="p">)</span>
@@ -295,9 +251,9 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_stub</span> <span class="o">=</span> <span class="n">milvus_pb2_grpc</span><span class="o">.</span><span class="n">MilvusServiceStub</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">Status</span><span class="p">()</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span></div>
 
-    <span class="k">def</span> <span class="nf">connected</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="GrpcMilvus.connected"><a class="viewcode-back" href="../../../assets.html#milvus.GrpcMilvus.connected">[docs]</a>    <span class="k">def</span> <span class="nf">connected</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Check if client is connected to the server</span>
 
@@ -310,9 +266,9 @@
             <span class="n">grpc</span><span class="o">.</span><span class="n">channel_ready_future</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">except</span> <span class="p">(</span><span class="n">grpc</span><span class="o">.</span><span class="n">FutureTimeoutError</span><span class="p">,</span> <span class="n">grpc</span><span class="o">.</span><span class="n">RpcError</span><span class="p">):</span>
-            <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
 
-    <span class="k">def</span> <span class="nf">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="GrpcMilvus.disconnect"><a class="viewcode-back" href="../../../assets.html#milvus.GrpcMilvus.disconnect">[docs]</a>    <span class="k">def</span> <span class="nf">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Disconnect with the server and distroy the channel</span>
 
@@ -340,9 +296,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stub</span> <span class="o">=</span> <span class="kc">None</span>
 
-        <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s1">&#39;Disconnect successfully&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s1">&#39;Disconnect successfully&#39;</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">client_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="GrpcMilvus.client_version"><a class="viewcode-back" href="../../../assets.html#milvus.GrpcMilvus.client_version">[docs]</a>    <span class="k">def</span> <span class="nf">client_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Provide client version</span>
 
@@ -351,9 +307,9 @@
 
 <span class="sd">        :rtype: (str)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">__version__</span>
+        <span class="k">return</span> <span class="n">__version__</span></div>
 
-    <span class="k">def</span> <span class="nf">server_version</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="GrpcMilvus.server_version"><a class="viewcode-back" href="../../../assets.html#milvus.GrpcMilvus.server_version">[docs]</a>    <span class="k">def</span> <span class="nf">server_version</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Provide server version</span>
 
@@ -364,9 +320,9 @@
 
 <span class="sd">        :rtype: (Status, str)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cmd</span><span class="p">(</span><span class="n">cmd</span><span class="o">=</span><span class="s1">&#39;version&#39;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cmd</span><span class="p">(</span><span class="n">cmd</span><span class="o">=</span><span class="s1">&#39;version&#39;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">server_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="GrpcMilvus.server_status"><a class="viewcode-back" href="../../../assets.html#milvus.GrpcMilvus.server_status">[docs]</a>    <span class="k">def</span> <span class="nf">server_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Provide server status</span>
 
@@ -377,7 +333,7 @@
 
 <span class="sd">        :rtype: (Status, str)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cmd</span><span class="p">(</span><span class="n">cmd</span><span class="o">=</span><span class="s1">&#39;OK&#39;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cmd</span><span class="p">(</span><span class="n">cmd</span><span class="o">=</span><span class="s1">&#39;OK&#39;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_cmd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">connected</span><span class="p">():</span>
@@ -397,7 +353,7 @@
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">())),</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">create_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="GrpcMilvus.create_table"><a class="viewcode-back" href="../../../assets.html#milvus.GrpcMilvus.create_table">[docs]</a>    <span class="k">def</span> <span class="nf">create_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create table</span>
 
@@ -436,9 +392,9 @@
             <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">Status</span><span class="o">.</span><span class="n">UNEXPECTED_ERROR</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Request timeout&#39;</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">grpc</span><span class="o">.</span><span class="n">RpcError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">()))</span>
+            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">()))</span></div>
 
-    <span class="k">def</span> <span class="nf">has_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="GrpcMilvus.has_table"><a class="viewcode-back" href="../../../assets.html#milvus.GrpcMilvus.has_table">[docs]</a>    <span class="k">def</span> <span class="nf">has_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        This method is used to test table existence.</span>
@@ -470,9 +426,9 @@
             <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="n">Status</span><span class="o">.</span><span class="n">UNEXPECTED_ERROR</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;request timeout&quot;</span><span class="p">),</span> <span class="kc">False</span>
         <span class="k">except</span> <span class="n">grpc</span><span class="o">.</span><span class="n">RpcError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">()),</span> <span class="kc">False</span>
+            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">()),</span> <span class="kc">False</span></div>
 
-    <span class="k">def</span> <span class="nf">describe_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="GrpcMilvus.describe_table"><a class="viewcode-back" href="../../../assets.html#milvus.GrpcMilvus.describe_table">[docs]</a>    <span class="k">def</span> <span class="nf">describe_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Show table information</span>
 
@@ -511,9 +467,9 @@
             <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">Status</span><span class="o">.</span><span class="n">UNEXPECTED_ERROR</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Request timeout&#39;</span><span class="p">),</span> <span class="kc">None</span>
         <span class="k">except</span> <span class="n">grpc</span><span class="o">.</span><span class="n">RpcError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">())),</span> <span class="kc">None</span>
+            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">())),</span> <span class="kc">None</span></div>
 
-    <span class="k">def</span> <span class="nf">count_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
+<div class="viewcode-block" id="GrpcMilvus.count_table"><a class="viewcode-back" href="../../../assets.html#milvus.GrpcMilvus.count_table">[docs]</a>    <span class="k">def</span> <span class="nf">count_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        obtain vector number in table</span>
 
@@ -532,19 +488,19 @@
         <span class="n">table_name</span> <span class="o">=</span> <span class="n">Prepare</span><span class="o">.</span><span class="n">table_name</span><span class="p">(</span><span class="n">table_name</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">trc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stub</span><span class="o">.</span><span class="n">CountTable</span><span class="o">.</span><span class="n">future</span><span class="p">(</span><span class="n">table_name</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">trc</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">error_code</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s1">&#39;Success!&#39;</span><span class="p">),</span> <span class="n">trc</span><span class="o">.</span><span class="n">table_row_count</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stub</span><span class="o">.</span><span class="n">CountTable</span><span class="o">.</span><span class="n">future</span><span class="p">(</span><span class="n">table_name</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">error_code</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s1">&#39;Success!&#39;</span><span class="p">),</span> <span class="n">response</span><span class="o">.</span><span class="n">table_row_count</span>
 
-            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="n">trc</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">error_code</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">trc</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">reason</span><span class="p">),</span> <span class="kc">None</span>
+            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">error_code</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">reason</span><span class="p">),</span> <span class="kc">None</span>
         <span class="k">except</span> <span class="n">grpc</span><span class="o">.</span><span class="n">FutureTimeoutError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">Status</span><span class="o">.</span><span class="n">UNEXPECTED_ERROR</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Request timeout&#39;</span><span class="p">),</span> <span class="kc">None</span>
         <span class="k">except</span> <span class="n">grpc</span><span class="o">.</span><span class="n">RpcError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">())),</span> <span class="kc">None</span>
+            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">())),</span> <span class="kc">None</span></div>
 
-    <span class="k">def</span> <span class="nf">show_tables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="GrpcMilvus.show_tables"><a class="viewcode-back" href="../../../assets.html#milvus.GrpcMilvus.show_tables">[docs]</a>    <span class="k">def</span> <span class="nf">show_tables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Show all tables information in database</span>
 
@@ -570,9 +526,9 @@
             <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">Status</span><span class="o">.</span><span class="n">UNEXPECTED_ERROR</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Request timeout&quot;</span><span class="p">),</span> <span class="p">[]</span>
         <span class="k">except</span> <span class="n">grpc</span><span class="o">.</span><span class="n">RpcError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">())),</span> <span class="p">[]</span>
+            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">())),</span> <span class="p">[]</span></div>
 
-    <span class="k">def</span> <span class="nf">preload_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="GrpcMilvus.preload_table"><a class="viewcode-back" href="../../../assets.html#milvus.GrpcMilvus.preload_table">[docs]</a>    <span class="k">def</span> <span class="nf">preload_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Load table to cache in advance</span>
 
@@ -594,9 +550,9 @@
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">Status</span><span class="o">.</span><span class="n">UNEXPECTED_ERROR</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Request timeout&#39;</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">grpc</span><span class="o">.</span><span class="n">RpcError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">()))</span>
+            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">()))</span></div>
 
-    <span class="k">def</span> <span class="nf">drop_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+<div class="viewcode-block" id="GrpcMilvus.drop_table"><a class="viewcode-back" href="../../../assets.html#milvus.GrpcMilvus.drop_table">[docs]</a>    <span class="k">def</span> <span class="nf">drop_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Delete table with table_name</span>
 
@@ -623,9 +579,9 @@
             <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">Status</span><span class="o">.</span><span class="n">UNEXPECTED_ERROR</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Request timeout&#39;</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">grpc</span><span class="o">.</span><span class="n">RpcError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">()))</span>
+            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">()))</span></div>
 
-    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">records</span><span class="p">,</span> <span class="n">ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">partition_tag</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="GrpcMilvus.insert"><a class="viewcode-back" href="../../../assets.html#milvus.GrpcMilvus.insert">[docs]</a>    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">records</span><span class="p">,</span> <span class="n">ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">partition_tag</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add vectors to table</span>
 
@@ -642,6 +598,13 @@
 <span class="sd">                `OR using Prepare.records`</span>
 
 <span class="sd">        :param records: list of vectors been inserted</span>
+
+<span class="sd">        :type partition_tag: str or None.</span>
+<span class="sd">            If partition_tag is None, vectors will be inserted into table rather than partitions.</span>
+
+<span class="sd">        :param partition_tag: the tag string of table</span>
+
+<span class="sd">        :type</span>
 
 <span class="sd">        :type  timeout: int</span>
 <span class="sd">        :param timeout: time waiting for server response</span>
@@ -679,9 +642,9 @@
             <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">())),</span> <span class="p">[]</span>
         <span class="k">except</span> <span class="n">grpc</span><span class="o">.</span><span class="n">FutureTimeoutError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="n">Status</span><span class="o">.</span><span class="n">UNEXPECTED_ERROR</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Request timeout&quot;</span><span class="p">),</span> <span class="p">[]</span>
+            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="n">Status</span><span class="o">.</span><span class="n">UNEXPECTED_ERROR</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Request timeout&quot;</span><span class="p">),</span> <span class="p">[]</span></div>
 
-    <span class="k">def</span> <span class="nf">create_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="GrpcMilvus.create_index"><a class="viewcode-back" href="../../../assets.html#milvus.GrpcMilvus.create_index">[docs]</a>    <span class="k">def</span> <span class="nf">create_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        build vectors of specific table and create vector index</span>
 
@@ -741,9 +704,9 @@
             <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">error_code</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">reason</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">grpc</span><span class="o">.</span><span class="n">RpcError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">()))</span>
+            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">()))</span></div>
 
-    <span class="k">def</span> <span class="nf">describe_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="GrpcMilvus.describe_index"><a class="viewcode-back" href="../../../assets.html#milvus.GrpcMilvus.describe_index">[docs]</a>    <span class="k">def</span> <span class="nf">describe_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Show index information of designated table</span>
 
@@ -777,9 +740,9 @@
             <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="n">Status</span><span class="o">.</span><span class="n">UNEXPECTED_ERROR</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Request timeout&#39;</span><span class="p">),</span> <span class="kc">None</span>
         <span class="k">except</span> <span class="n">grpc</span><span class="o">.</span><span class="n">RpcError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">())),</span> <span class="kc">None</span>
+            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">())),</span> <span class="kc">None</span></div>
 
-    <span class="k">def</span> <span class="nf">drop_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="GrpcMilvus.drop_index"><a class="viewcode-back" href="../../../assets.html#milvus.GrpcMilvus.drop_index">[docs]</a>    <span class="k">def</span> <span class="nf">drop_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        drop index from index file</span>
 
@@ -804,9 +767,30 @@
             <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">Status</span><span class="o">.</span><span class="n">UNEXPECTED_ERROR</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Request timeout&#39;</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">grpc</span><span class="o">.</span><span class="n">RpcError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">()))</span>
+            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">()))</span></div>
 
-    <span class="k">def</span> <span class="nf">create_partition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">partition_name</span><span class="p">,</span> <span class="n">partition_tag</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="GrpcMilvus.create_partition"><a class="viewcode-back" href="../../../assets.html#milvus.GrpcMilvus.create_partition">[docs]</a>    <span class="k">def</span> <span class="nf">create_partition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">partition_name</span><span class="p">,</span> <span class="n">partition_tag</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        create a specific partition under designated table. After done, the meta file in</span>
+<span class="sd">        milvus server update partition information, you can perform actions about partitions</span>
+<span class="sd">        with partition tag.</span>
+
+<span class="sd">        :param table_name: target table name.</span>
+<span class="sd">        :type  table_name: str</span>
+
+<span class="sd">        :param partition_name: name of target partition under designated table.</span>
+<span class="sd">        :type  partition_name: str</span>
+
+<span class="sd">        :param partition_tag: tag name of target partition under designated table.</span>
+<span class="sd">        :type  partition_tag: str</span>
+
+<span class="sd">        :param timeout: time waiting for response.</span>
+<span class="sd">        :type  timeout: int</span>
+
+<span class="sd">       :return:</span>
+<span class="sd">            Status: indicate if operation is successful</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">connected</span><span class="p">():</span>
             <span class="k">raise</span> <span class="n">NotConnectError</span><span class="p">(</span><span class="s1">&#39;Please connect to the server first&#39;</span><span class="p">)</span>
 
@@ -820,9 +804,23 @@
             <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="n">Status</span><span class="o">.</span><span class="n">UNEXPECTED_ERROR</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Request timeout.&#39;</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">grpc</span><span class="o">.</span><span class="n">RpcError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">()))</span>
+            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">()))</span></div>
 
-    <span class="k">def</span> <span class="nf">show_partitions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="GrpcMilvus.show_partitions"><a class="viewcode-back" href="../../../assets.html#milvus.GrpcMilvus.show_partitions">[docs]</a>    <span class="k">def</span> <span class="nf">show_partitions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Show all partitions under designated table.</span>
+
+<span class="sd">        :param table_name: target table name.</span>
+<span class="sd">        :type  table_name: str</span>
+
+<span class="sd">        :param timeout: time waiting for response.</span>
+<span class="sd">        :type  timeout: int</span>
+
+<span class="sd">        :return:</span>
+<span class="sd">            Status: indicate if operation is successful</span>
+<span class="sd">            partition_list:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">connected</span><span class="p">():</span>
             <span class="k">raise</span> <span class="n">NotConnectError</span><span class="p">(</span><span class="s1">&#39;Please connect to the server first&#39;</span><span class="p">)</span>
 
@@ -849,9 +847,25 @@
             <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="n">Status</span><span class="o">.</span><span class="n">UNEXPECTED_ERROR</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;request timeout&quot;</span><span class="p">),</span> <span class="p">[]</span>
         <span class="k">except</span> <span class="n">grpc</span><span class="o">.</span><span class="n">RpcError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">())),</span> <span class="p">[]</span>
+            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">())),</span> <span class="p">[]</span></div>
 
-    <span class="k">def</span> <span class="nf">drop_partition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">partition_tag</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="GrpcMilvus.drop_partition"><a class="viewcode-back" href="../../../assets.html#milvus.GrpcMilvus.drop_partition">[docs]</a>    <span class="k">def</span> <span class="nf">drop_partition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">partition_tag</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Drop specific partition under designated table.</span>
+
+<span class="sd">        :param table_name: target table name.</span>
+<span class="sd">        :type  table_name: str</span>
+
+<span class="sd">        :param partition_tag: tag name of specific partition</span>
+<span class="sd">        :type  partition_tag: str</span>
+
+<span class="sd">        :param timeout: time waiting for response.</span>
+<span class="sd">        :type  timeout: int</span>
+
+<span class="sd">        :return:</span>
+<span class="sd">            Status: indicate if operation is successful</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">connected</span><span class="p">():</span>
             <span class="k">raise</span> <span class="n">NotConnectError</span><span class="p">(</span><span class="s1">&#39;Please connect to the server first&#39;</span><span class="p">)</span>
 
@@ -868,22 +882,30 @@
             <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="n">Status</span><span class="o">.</span><span class="n">UNEXPECTED_ERROR</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;request timeout&quot;</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">grpc</span><span class="o">.</span><span class="n">RpcError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">()))</span>
+            <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">()))</span></div>
 
-    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">top_k</span><span class="p">,</span> <span class="n">nprobe</span><span class="p">,</span>
+<div class="viewcode-block" id="GrpcMilvus.search"><a class="viewcode-back" href="../../../assets.html#milvus.GrpcMilvus.search">[docs]</a>    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">top_k</span><span class="p">,</span> <span class="n">nprobe</span><span class="p">,</span>
                <span class="n">query_records</span><span class="p">,</span> <span class="n">query_ranges</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">partition_tags</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Search similar vectors in designated table</span>
 
 <span class="sd">        :param table_name: target table name</span>
 <span class="sd">        :type  table_name: str</span>
+
 <span class="sd">        :param top_k: number of vertors which is most similar with query vectors</span>
 <span class="sd">        :type  top_k: int</span>
+
 <span class="sd">        :param nprobe: cell number of probe</span>
 <span class="sd">        :type  nprobe: int</span>
+
 <span class="sd">        :param query_records: vectors to query</span>
 <span class="sd">        :type  query_records: list[list[float32]]</span>
+
 <span class="sd">        :param query_ranges: query data range</span>
+<span class="sd">        :type  query_ranges: list</span>
+
+<span class="sd">        :param partition_tags: tags to search</span>
+<span class="sd">        :type  partition_tags: list</span>
 
 <span class="sd">        :return</span>
 <span class="sd">            Status: indicate if search successfully</span>
@@ -917,16 +939,16 @@
         <span class="k">except</span> <span class="n">grpc</span><span class="o">.</span><span class="n">RpcError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
             <span class="n">status</span> <span class="o">=</span> <span class="n">Status</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">()))</span>
-            <span class="k">return</span> <span class="n">status</span><span class="p">,</span> <span class="p">[]</span>
+            <span class="k">return</span> <span class="n">status</span><span class="p">,</span> <span class="p">[]</span></div>
 
-    <span class="k">def</span> <span class="nf">search_in_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">file_ids</span><span class="p">,</span> <span class="n">query_records</span><span class="p">,</span> <span class="n">top_k</span><span class="p">,</span>
+<div class="viewcode-block" id="GrpcMilvus.search_in_files"><a class="viewcode-back" href="../../../assets.html#milvus.GrpcMilvus.search_in_files">[docs]</a>    <span class="k">def</span> <span class="nf">search_in_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">file_ids</span><span class="p">,</span> <span class="n">query_records</span><span class="p">,</span> <span class="n">top_k</span><span class="p">,</span>
                         <span class="n">nprobe</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">query_ranges</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Query vectors in a table, in specified files.</span>
 
 <span class="sd">        The server store vector data into multiple files if the size of vectors</span>
 <span class="sd">        exceeds file size threshold. It is supported to search in several files</span>
-<span class="sd">        by specifing file ids. However, these file ids are stored in db in server,</span>
+<span class="sd">        by specifying file ids. However, these file ids are stored in db in server,</span>
 <span class="sd">        and python sdk doesn&#39;t apply any APIs get them at client. It&#39;s a specific</span>
 <span class="sd">        method used in shards. Obtain more detail about milvus shards, see</span>
 <span class="sd">        &lt;a href=&quot;https://github.com/milvus-io/milvus/tree/0.6.0/shards&quot;&gt;</span>
@@ -982,7 +1004,7 @@
         <span class="k">except</span> <span class="n">grpc</span><span class="o">.</span><span class="n">RpcError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
             <span class="n">status</span> <span class="o">=</span> <span class="n">Status</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">(),</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Error occurred. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">details</span><span class="p">()))</span>
-            <span class="k">return</span> <span class="n">status</span><span class="p">,</span> <span class="p">[]</span>
+            <span class="k">return</span> <span class="n">status</span><span class="p">,</span> <span class="p">[]</span></div>
 
     <span class="k">def</span> <span class="nf">__delete_vectors_by_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1025,7 +1047,7 @@
     <span class="n">delete_table</span> <span class="o">=</span> <span class="n">drop_table</span>
     <span class="n">add_vectors</span> <span class="o">=</span> <span class="n">insert</span>
     <span class="n">search_vectors</span> <span class="o">=</span> <span class="n">search</span>
-    <span class="n">search_vectors_in_files</span> <span class="o">=</span> <span class="n">search_in_files</span>
+    <span class="n">search_vectors_in_files</span> <span class="o">=</span> <span class="n">search_in_files</span></div>
 </pre></div>
 
           </div>

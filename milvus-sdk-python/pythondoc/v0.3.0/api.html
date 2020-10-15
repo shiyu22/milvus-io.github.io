@@ -5,19 +5,19 @@
   <head>
     <meta charset="utf-8" />
     <title>API reference &#8212; pymilvus 0.3.0 documentation</title>
-    <link rel="stylesheet" href="static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="static/documentation_options.js"></script>
-    <script type="text/javascript" src="static/jquery.js"></script>
-    <script type="text/javascript" src="static/underscore.js"></script>
-    <script type="text/javascript" src="static/doctools.js"></script>
-    <script type="text/javascript" src="static/language_data.js"></script>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Index params" href="param.html" />
     <link rel="prev" title="Welcome to pymilvus&#39;s documentation!" href="index.html" />
    
-  <link rel="stylesheet" href="static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
@@ -141,10 +141,10 @@
 <h3>APIs<a class="headerlink" href="#apis" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="milvus.Milvus">
-<em class="property">class </em><code class="sig-prename descclassname">milvus.</code><code class="sig-name descname">Milvus</code><span class="sig-paren">(</span><em class="sig-param">host=None</em>, <em class="sig-param">port=None</em>, <em class="sig-param">handler='GRPC'</em>, <em class="sig-param">pool='SingletonThread'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/stub.html#Milvus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">milvus.</code><code class="sig-name descname">Milvus</code><span class="sig-paren">(</span><em class="sig-param">host=None</em>, <em class="sig-param">port=None</em>, <em class="sig-param">handler='GRPC'</em>, <em class="sig-param">pool='SingletonThread'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/stub.html#Milvus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
 <dt id="milvus.Milvus.compact">
-<code class="sig-name descname">compact</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">threshold=0.2</em>, <em class="sig-param">timeout=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/stub.html#Milvus.compact"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.compact" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">compact</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">threshold=0.2</em>, <em class="sig-param">timeout=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/stub.html#Milvus.compact"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.compact" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compacts a specified collection. After deleting some data in a segment, you can call
 compact to free up the disk space occupied by the deleted data. Calling compact also
 deletes empty segments, but does not merge segments.</p>
@@ -171,7 +171,7 @@ Note that in current version his is an EXPERIMENTAL function.</p>
 
 <dl class="method">
 <dt id="milvus.Milvus.count_entities">
-<code class="sig-name descname">count_entities</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">timeout=30</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/stub.html#Milvus.count_entities"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.count_entities" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">count_entities</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">timeout=30</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/stub.html#Milvus.count_entities"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.count_entities" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the number of entities in a specified collection.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -188,7 +188,7 @@ Note that in current version his is an EXPERIMENTAL function.</p>
 
 <dl class="method">
 <dt id="milvus.Milvus.create_collection">
-<code class="sig-name descname">create_collection</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">fields</em>, <em class="sig-param">timeout=30</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/stub.html#Milvus.create_collection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.create_collection" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create_collection</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">fields</em>, <em class="sig-param">timeout=30</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/stub.html#Milvus.create_collection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.create_collection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a collection.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -209,7 +209,7 @@ BaseException: If the return result from server is not ok</p>
 
 <dl class="method">
 <dt id="milvus.Milvus.create_index">
-<code class="sig-name descname">create_index</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">field_name</em>, <em class="sig-param">params</em>, <em class="sig-param">timeout=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/stub.html#Milvus.create_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.create_index" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create_index</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">field_name</em>, <em class="sig-param">params</em>, <em class="sig-param">timeout=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/stub.html#Milvus.create_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.create_index" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates an index for a field in a specified collection. Milvus does not support creating multiple
 indexes for a field. In a scenario where the field already has an index, if you create another one
 that is equivalent (in terms of type and parameters) to the existing one, the server returns this
@@ -227,7 +227,7 @@ index to the client; otherwise, the server replaces the existing index with the 
 
 <dl class="method">
 <dt id="milvus.Milvus.create_partition">
-<code class="sig-name descname">create_partition</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">partition_tag</em>, <em class="sig-param">timeout=30</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/stub.html#Milvus.create_partition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.create_partition" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create_partition</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">partition_tag</em>, <em class="sig-param">timeout=30</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/stub.html#Milvus.create_partition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.create_partition" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a partition in a specified collection. You only need to import the
 parameters of partition_tag to create a partition. A collection cannot hold
 partitions of the same tag, whilst you can insert the same tag in different collections.</p>
@@ -244,7 +244,7 @@ partitions of the same tag, whilst you can insert the same tag in different coll
 
 <dl class="method">
 <dt id="milvus.Milvus.delete_entity_by_id">
-<code class="sig-name descname">delete_entity_by_id</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">ids</em>, <em class="sig-param">timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/stub.html#Milvus.delete_entity_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.delete_entity_by_id" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delete_entity_by_id</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">ids</em>, <em class="sig-param">timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/stub.html#Milvus.delete_entity_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.delete_entity_by_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Deletes the entities specified by a given list of IDs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -266,7 +266,7 @@ status will differ. NOte that in current version his is an EXPERIMENTAL function
 
 <dl class="method">
 <dt id="milvus.Milvus.drop_collection">
-<code class="sig-name descname">drop_collection</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">timeout=30</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/stub.html#Milvus.drop_collection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.drop_collection" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">drop_collection</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">timeout=30</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/stub.html#Milvus.drop_collection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.drop_collection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Deletes a specified collection.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -277,7 +277,7 @@ status will differ. NOte that in current version his is an EXPERIMENTAL function
 
 <dl class="method">
 <dt id="milvus.Milvus.drop_index">
-<code class="sig-name descname">drop_index</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">field_name</em>, <em class="sig-param">timeout=30</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/stub.html#Milvus.drop_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.drop_index" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">drop_index</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">field_name</em>, <em class="sig-param">timeout=30</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/stub.html#Milvus.drop_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.drop_index" title="Permalink to this definition">¶</a></dt>
 <dd><p>Removes the index of a field in a specified collection.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -291,7 +291,7 @@ status will differ. NOte that in current version his is an EXPERIMENTAL function
 
 <dl class="method">
 <dt id="milvus.Milvus.drop_partition">
-<code class="sig-name descname">drop_partition</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">partition_tag</em>, <em class="sig-param">timeout=30</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/stub.html#Milvus.drop_partition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.drop_partition" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">drop_partition</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">partition_tag</em>, <em class="sig-param">timeout=30</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/stub.html#Milvus.drop_partition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.drop_partition" title="Permalink to this definition">¶</a></dt>
 <dd><p>Deletes the specified partitions in a collection.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -305,7 +305,7 @@ status will differ. NOte that in current version his is an EXPERIMENTAL function
 
 <dl class="method">
 <dt id="milvus.Milvus.flush">
-<code class="sig-name descname">flush</code><span class="sig-paren">(</span><em class="sig-param">collection_name_array=None</em>, <em class="sig-param">timeout=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/stub.html#Milvus.flush"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.flush" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">flush</code><span class="sig-paren">(</span><em class="sig-param">collection_name_array=None</em>, <em class="sig-param">timeout=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/stub.html#Milvus.flush"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.flush" title="Permalink to this definition">¶</a></dt>
 <dd><p>Flushes data in the specified collections from memory to disk. When you insert or delete data,
 the server stores the data in the memory temporarily and then flushes it to the disk at fixed
 intervals. Calling flush ensures that the newly inserted data is visible and the deleted data
@@ -319,7 +319,7 @@ is no longer recoverable.</p>
 
 <dl class="method">
 <dt id="milvus.Milvus.get_collection_info">
-<code class="sig-name descname">get_collection_info</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">timeout=30</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/stub.html#Milvus.get_collection_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.get_collection_info" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_collection_info</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">timeout=30</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/stub.html#Milvus.get_collection_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.get_collection_info" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns information of a specified collection, including field
 information of the collection and index information of fields.</p>
 <dl class="field-list simple">
@@ -337,7 +337,7 @@ information of the collection and index information of fields.</p>
 
 <dl class="method">
 <dt id="milvus.Milvus.get_collection_stats">
-<code class="sig-name descname">get_collection_stats</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">timeout=30</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/stub.html#Milvus.get_collection_stats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.get_collection_stats" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_collection_stats</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">timeout=30</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/stub.html#Milvus.get_collection_stats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.get_collection_stats" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns statistical information about a specified collection, including
 the number of entities and the storage size of each segment of the collection.</p>
 <dl class="field-list simple">
@@ -355,7 +355,7 @@ the number of entities and the storage size of each segment of the collection.</
 
 <dl class="method">
 <dt id="milvus.Milvus.get_entity_by_id">
-<code class="sig-name descname">get_entity_by_id</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">ids</em>, <em class="sig-param">fields=None</em>, <em class="sig-param">timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/stub.html#Milvus.get_entity_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.get_entity_by_id" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_entity_by_id</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">ids</em>, <em class="sig-param">fields=None</em>, <em class="sig-param">timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/stub.html#Milvus.get_entity_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.get_entity_by_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the entities specified by given IDs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -375,7 +375,7 @@ the number of entities and the storage size of each segment of the collection.</
 
 <dl class="method">
 <dt id="milvus.Milvus.has_collection">
-<code class="sig-name descname">has_collection</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">timeout=30</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/stub.html#Milvus.has_collection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.has_collection" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">has_collection</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">timeout=30</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/stub.html#Milvus.has_collection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.has_collection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks whether a specified collection exists.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -392,7 +392,7 @@ the number of entities and the storage size of each segment of the collection.</
 
 <dl class="method">
 <dt id="milvus.Milvus.has_partition">
-<code class="sig-name descname">has_partition</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">partition_tag</em>, <em class="sig-param">timeout=30</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/stub.html#Milvus.has_partition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.has_partition" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">has_partition</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">partition_tag</em>, <em class="sig-param">timeout=30</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/stub.html#Milvus.has_partition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.has_partition" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks if a specified partition exists in a collection.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -412,7 +412,7 @@ the number of entities and the storage size of each segment of the collection.</
 
 <dl class="method">
 <dt id="milvus.Milvus.insert">
-<code class="sig-name descname">insert</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">entities</em>, <em class="sig-param">ids=None</em>, <em class="sig-param">partition_tag=None</em>, <em class="sig-param">params=None</em>, <em class="sig-param">timeout=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/stub.html#Milvus.insert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.insert" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">insert</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">entities</em>, <em class="sig-param">ids=None</em>, <em class="sig-param">partition_tag=None</em>, <em class="sig-param">params=None</em>, <em class="sig-param">timeout=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/stub.html#Milvus.insert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.insert" title="Permalink to this definition">¶</a></dt>
 <dd><p>Inserts entities in a specified collection.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -435,7 +435,7 @@ None. The server stores entities in the “_default” partition by default.</p>
 
 <dl class="method">
 <dt id="milvus.Milvus.list_collections">
-<code class="sig-name descname">list_collections</code><span class="sig-paren">(</span><em class="sig-param">timeout=30</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/stub.html#Milvus.list_collections"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.list_collections" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">list_collections</code><span class="sig-paren">(</span><em class="sig-param">timeout=30</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/stub.html#Milvus.list_collections"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.list_collections" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list of all collection names.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -449,7 +449,7 @@ None. The server stores entities in the “_default” partition by default.</p>
 
 <dl class="method">
 <dt id="milvus.Milvus.list_id_in_segment">
-<code class="sig-name descname">list_id_in_segment</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">segment_id</em>, <em class="sig-param">timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/stub.html#Milvus.list_id_in_segment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.list_id_in_segment" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">list_id_in_segment</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">segment_id</em>, <em class="sig-param">timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/stub.html#Milvus.list_id_in_segment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.list_id_in_segment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns all entity IDs in a specified segment.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -469,7 +469,7 @@ None. The server stores entities in the “_default” partition by default.</p>
 
 <dl class="method">
 <dt id="milvus.Milvus.list_partitions">
-<code class="sig-name descname">list_partitions</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">timeout=30</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/stub.html#Milvus.list_partitions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.list_partitions" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">list_partitions</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">timeout=30</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/stub.html#Milvus.list_partitions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.list_partitions" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list of all partition tags in a specified collection.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -486,7 +486,7 @@ None. The server stores entities in the “_default” partition by default.</p>
 
 <dl class="method">
 <dt id="milvus.Milvus.load_collection">
-<code class="sig-name descname">load_collection</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/stub.html#Milvus.load_collection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.load_collection" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_collection</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/stub.html#Milvus.load_collection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.load_collection" title="Permalink to this definition">¶</a></dt>
 <dd><blockquote>
 <div><p>Loads a specified collection from disk to memory.</p>
 </div></blockquote>
@@ -499,7 +499,7 @@ None. The server stores entities in the “_default” partition by default.</p>
 
 <dl class="method">
 <dt id="milvus.Milvus.search">
-<code class="sig-name descname">search</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">dsl</em>, <em class="sig-param">partition_tags=None</em>, <em class="sig-param">fields=None</em>, <em class="sig-param">timeout=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/stub.html#Milvus.search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.search" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">search</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">dsl</em>, <em class="sig-param">partition_tags=None</em>, <em class="sig-param">fields=None</em>, <em class="sig-param">timeout=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/stub.html#Milvus.search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.search" title="Permalink to this definition">¶</a></dt>
 <dd><p>Searches a collection based on the given DSL clauses and returns query results.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -521,7 +521,7 @@ None. The server stores entities in the “_default” partition by default.</p>
 
 <dl class="method">
 <dt id="milvus.Milvus.search_in_segment">
-<code class="sig-name descname">search_in_segment</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">segment_ids</em>, <em class="sig-param">dsl</em>, <em class="sig-param">fields=None</em>, <em class="sig-param">timeout=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="modules/milvus/client/stub.html#Milvus.search_in_segment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.search_in_segment" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">search_in_segment</code><span class="sig-paren">(</span><em class="sig-param">collection_name</em>, <em class="sig-param">segment_ids</em>, <em class="sig-param">dsl</em>, <em class="sig-param">fields=None</em>, <em class="sig-param">timeout=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/milvus/client/stub.html#Milvus.search_in_segment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#milvus.Milvus.search_in_segment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Searches in the specified segments of a collection.</p>
 <p>The Milvus server stores entity data into multiple files. Searching for entities in specific files is a
 method used in Mishards. Obtain more detail about Mishards, see
@@ -620,7 +620,7 @@ method used in Mishards. Obtain more detail about Mishards, see
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="sources/api.rst.txt"
+      <a href="_sources/api.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

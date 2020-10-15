@@ -69,6 +69,7 @@ Methods
 APIs
 -----
 
+
 .. autoclass:: milvus.Milvus
    :members: create_collection, has_collection, get_collection_info, count_entities, list_collections,
              get_collection_stats, load_collection, drop_collection, insert, get_entity_by_id, list_id_in_segment,

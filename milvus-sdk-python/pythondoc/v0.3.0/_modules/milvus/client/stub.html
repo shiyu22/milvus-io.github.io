@@ -212,6 +212,7 @@
 <span class="sd">        :type  fields: str</span>
 
 <span class="sd">        :raises:</span>
+<span class="sd">            RpcError: If grpc encounter an error</span>
 <span class="sd">            ParamError: If parameters are invalid</span>
 <span class="sd">            BaseException: If the return result from server is not ok</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -229,6 +230,10 @@
 <span class="sd">        :return: If specified collection exists</span>
 <span class="sd">        :rtype: bool</span>
 
+<span class="sd">        :raises:</span>
+<span class="sd">            RpcError: If grpc encounter an error</span>
+<span class="sd">            ParamError: If parameters are invalid</span>
+<span class="sd">            BaseException: If the return result from server is not ok</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">check_pass_param</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">collection_name</span><span class="p">)</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="p">()</span> <span class="k">as</span> <span class="n">handler</span><span class="p">:</span>
@@ -246,6 +251,10 @@
 <span class="sd">        :return: The information of collection to describe.</span>
 <span class="sd">        :rtype: dict</span>
 
+<span class="sd">        :raises:</span>
+<span class="sd">            RpcError: If grpc encounter an error</span>
+<span class="sd">            ParamError: If parameters are invalid</span>
+<span class="sd">            BaseException: If the return result from server is not ok</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">check_pass_param</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">collection_name</span><span class="p">)</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="p">()</span> <span class="k">as</span> <span class="n">handler</span><span class="p">:</span>
@@ -262,6 +271,10 @@
 <span class="sd">        :return: The number of entities</span>
 <span class="sd">        :rtype: int</span>
 
+<span class="sd">        :raises:</span>
+<span class="sd">            RpcError: If grpc encounter an error</span>
+<span class="sd">            ParamError: If parameters are invalid</span>
+<span class="sd">            BaseException: If the return result from server is not ok</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">check_pass_param</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">collection_name</span><span class="p">)</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="p">()</span> <span class="k">as</span> <span class="n">handler</span><span class="p">:</span>
@@ -274,6 +287,11 @@
 
 <span class="sd">        :return: List of collection names, return when operation is successful</span>
 <span class="sd">        :rtype: list[str]</span>
+
+<span class="sd">        :raises:</span>
+<span class="sd">            RpcError: If grpc encounter an error</span>
+<span class="sd">            ParamError: If parameters are invalid</span>
+<span class="sd">            BaseException: If the return result from server is not ok</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="p">()</span> <span class="k">as</span> <span class="n">handler</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">handler</span><span class="o">.</span><span class="n">list_collections</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span></div>
@@ -288,8 +306,12 @@
 <span class="sd">        :type  collection_name: str</span>
 <span class="sd">        </span>
 <span class="sd">        :return: The collection stats.</span>
-
 <span class="sd">        :rtype: dict</span>
+
+<span class="sd">        :raises:</span>
+<span class="sd">            RpcError: If grpc encounter an error</span>
+<span class="sd">            ParamError: If parameters are invalid</span>
+<span class="sd">            BaseException: If the return result from server is not ok</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">check_pass_param</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">collection_name</span><span class="p">)</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="p">()</span> <span class="k">as</span> <span class="n">handler</span><span class="p">:</span>
@@ -303,6 +325,10 @@
 <span class="sd">        :param collection_name: The name of the collection to load.</span>
 <span class="sd">        :type  collection_name: str</span>
 
+<span class="sd">        :raises:</span>
+<span class="sd">            RpcError: If grpc encounter an error</span>
+<span class="sd">            ParamError: If parameters are invalid</span>
+<span class="sd">            BaseException: If the return result from server is not ok</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">check_pass_param</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">collection_name</span><span class="p">)</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="p">()</span> <span class="k">as</span> <span class="n">handler</span><span class="p">:</span>
@@ -316,6 +342,10 @@
 <span class="sd">        :param collection_name: The name of the collection to delete.</span>
 <span class="sd">        :type  collection_name: str</span>
 
+<span class="sd">        :raises:</span>
+<span class="sd">            RpcError: If grpc encounter an error</span>
+<span class="sd">            ParamError: If parameters are invalid</span>
+<span class="sd">            BaseException: If the return result from server is not ok</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">check_pass_param</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">collection_name</span><span class="p">)</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="p">()</span> <span class="k">as</span> <span class="n">handler</span><span class="p">:</span>
@@ -338,6 +368,11 @@
 
 <span class="sd">        :return: list of ids of the inserted vectors.</span>
 <span class="sd">        :rtype: list[int]</span>
+
+<span class="sd">        :raises:</span>
+<span class="sd">            RpcError: If grpc encounter an error</span>
+<span class="sd">            ParamError: If parameters are invalid</span>
+<span class="sd">            BaseException: If the return result from server is not ok</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;insert_param&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="p">()</span> <span class="k">as</span> <span class="n">handler</span><span class="p">:</span>
@@ -360,6 +395,11 @@
 
 <span class="sd">        :return: The entities specified by given IDs.</span>
 <span class="sd">        :rtype: Entities</span>
+
+<span class="sd">        :raises:</span>
+<span class="sd">            RpcError: If grpc encounter an error</span>
+<span class="sd">            ParamError: If parameters are invalid</span>
+<span class="sd">            BaseException: If the return result from server is not ok</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">check_pass_param</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">collection_name</span><span class="p">,</span> <span class="n">ids</span><span class="o">=</span><span class="n">ids</span><span class="p">)</span>
 
@@ -378,6 +418,11 @@
 
 <span class="sd">        :return: List of IDs in a specified segment.</span>
 <span class="sd">        :rtype: list[int]</span>
+
+<span class="sd">        :raises:</span>
+<span class="sd">            RpcError: If grpc encounter an error</span>
+<span class="sd">            ParamError: If parameters are invalid</span>
+<span class="sd">            BaseException: If the return result from server is not ok</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">check_pass_param</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">collection_name</span><span class="p">)</span>
         <span class="n">check_pass_param</span><span class="p">(</span><span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="n">segment_id</span><span class="p">])</span>
@@ -399,6 +444,10 @@
 <span class="sd">        :param params: Indexing parameters.</span>
 <span class="sd">        :type  params: dict</span>
 
+<span class="sd">        :raises:</span>
+<span class="sd">            RpcError: If grpc encounter an error</span>
+<span class="sd">            ParamError: If parameters are invalid</span>
+<span class="sd">            BaseException: If the return result from server is not ok</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="n">params</span> <span class="ow">or</span> <span class="nb">dict</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
@@ -416,6 +465,10 @@
 <span class="sd">        :param field_name: The name of the field to remove the index of.</span>
 <span class="sd">        :type  field_name: str</span>
 
+<span class="sd">        :raises:</span>
+<span class="sd">            RpcError: If grpc encounter an error</span>
+<span class="sd">            ParamError: If parameters are invalid</span>
+<span class="sd">            BaseException: If the return result from server is not ok</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">check_pass_param</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">collection_name</span><span class="p">)</span>
 
@@ -438,6 +491,10 @@
 <span class="sd">        :param partition_tag: The tag name of the partition.</span>
 <span class="sd">        :type  partition_tag: str</span>
 
+<span class="sd">        :raises:</span>
+<span class="sd">            RpcError: If grpc encounter an error</span>
+<span class="sd">            ParamError: If parameters are invalid</span>
+<span class="sd">            BaseException: If the return result from server is not ok</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">check_pass_param</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">collection_name</span><span class="p">,</span> <span class="n">partition_tag</span><span class="o">=</span><span class="n">partition_tag</span><span class="p">)</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="p">()</span> <span class="k">as</span> <span class="n">handler</span><span class="p">:</span>
@@ -457,6 +514,10 @@
 <span class="sd">        :return: Whether a specified partition exists in a collection.</span>
 <span class="sd">        :rtype: bool</span>
 
+<span class="sd">        :raises:</span>
+<span class="sd">            RpcError: If grpc encounter an error</span>
+<span class="sd">            ParamError: If parameters are invalid</span>
+<span class="sd">            BaseException: If the return result from server is not ok</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">check_pass_param</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">collection_name</span><span class="p">,</span> <span class="n">partition_tag</span><span class="o">=</span><span class="n">partition_tag</span><span class="p">)</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="p">()</span> <span class="k">as</span> <span class="n">handler</span><span class="p">:</span>
@@ -473,6 +534,10 @@
 <span class="sd">        :return: A list of all partition tags in specified collection.</span>
 <span class="sd">        :rtype: list[str]</span>
 
+<span class="sd">        :raises:</span>
+<span class="sd">            RpcError: If grpc encounter an error</span>
+<span class="sd">            ParamError: If parameters are invalid</span>
+<span class="sd">            BaseException: If the return result from server is not ok</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">check_pass_param</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">collection_name</span><span class="p">)</span>
 
@@ -490,6 +555,10 @@
 <span class="sd">        :param partition_tag: The tag name of the partition to delete.</span>
 <span class="sd">        :type  partition_tag: str</span>
 
+<span class="sd">        :raises:</span>
+<span class="sd">            RpcError: If grpc encounter an error</span>
+<span class="sd">            ParamError: If parameters are invalid</span>
+<span class="sd">            BaseException: If the return result from server is not ok</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">check_pass_param</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">collection_name</span><span class="p">,</span> <span class="n">partition_tag</span><span class="o">=</span><span class="n">partition_tag</span><span class="p">)</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="p">()</span> <span class="k">as</span> <span class="n">handler</span><span class="p">:</span>
@@ -512,6 +581,10 @@
 <span class="sd">        :return: Query result.</span>
 <span class="sd">        :rtype: QueryResult</span>
 
+<span class="sd">        :raises:</span>
+<span class="sd">            RpcError: If grpc encounter an error</span>
+<span class="sd">            ParamError: If parameters are invalid</span>
+<span class="sd">            BaseException: If the return result from server is not ok</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="p">()</span> <span class="k">as</span> <span class="n">handler</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">handler</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">collection_name</span><span class="p">,</span> <span class="n">dsl</span><span class="p">,</span> <span class="n">partition_tags</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
@@ -529,14 +602,18 @@
 <span class="sd">        :type  collection_name: str:param collection_name: table name been queried</span>
 <span class="sd">        :param dsl: The DSL that defines the query.:type  collection_name: str</span>
 <span class="sd">        :type  dsl: dict</span>
-<span class="sd">        :param partition_tags: The tags of partitions to search.:type  file_ids: list[str] or list[int]</span>
+<span class="sd">        :param partition_tags: The tags of partitions to search.</span>
 <span class="sd">        :type  partition_tags: list[str]:param file_ids: Specified files id array</span>
 <span class="sd">        :param fields: The fields to return in the search result</span>
 <span class="sd">        :type  fields: list[str]:type  query_records: list[list[float]]</span>
 
 <span class="sd">        :return: Query result.</span>
-
 <span class="sd">        :rtype: QueryResult</span>
+
+<span class="sd">        :raises:</span>
+<span class="sd">            RpcError: If grpc encounter an error</span>
+<span class="sd">            ParamError: If parameters are invalid</span>
+<span class="sd">            BaseException: If the return result from server is not ok</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># check_pass_param(collection_name=collection_name, segment_ids, query_entities, params, timeout)</span>
 
@@ -558,8 +635,13 @@
 
 <span class="sd">        :return: Status of delete request. The delete request will still execute successfully</span>
 <span class="sd">                 if Some of ids may not exist in specified collection, in this case the returned</span>
-<span class="sd">                 status will differ. NOte that in current version his is an EXPERIMENTAL function.</span>
+<span class="sd">                 status will differ. Note that in current version his is an EXPERIMENTAL function.</span>
 <span class="sd">        :rtype:  Status.</span>
+
+<span class="sd">        :raises:</span>
+<span class="sd">            RpcError: If grpc encounter an error</span>
+<span class="sd">            ParamError: If parameters are invalid</span>
+<span class="sd">            BaseException: If the return result from server is not ok</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">check_pass_param</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">collection_name</span><span class="p">,</span> <span class="n">ids</span><span class="o">=</span><span class="n">ids</span><span class="p">)</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="p">()</span> <span class="k">as</span> <span class="n">handler</span><span class="p">:</span>
@@ -576,6 +658,10 @@
 <span class="sd">        :type  collection_name_array: An array of names of the collections to flush.</span>
 <span class="sd">        :param collection_name_array: list[str]</span>
 
+<span class="sd">        :raises:</span>
+<span class="sd">            RpcError: If grpc encounter an error</span>
+<span class="sd">            ParamError: If parameters are invalid</span>
+<span class="sd">            BaseException: If the return result from server is not ok</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">collection_name_array</span> <span class="ow">in</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="p">[]):</span>
@@ -611,6 +697,11 @@
 <span class="sd">                 if server skip some of collections, in this case the returned status will differ.</span>
 <span class="sd">                 Note that in current version his is an EXPERIMENTAL function.</span>
 <span class="sd">        :rtype:  Status.</span>
+
+<span class="sd">        :raises:</span>
+<span class="sd">            RpcError: If grpc encounter an error</span>
+<span class="sd">            ParamError: If parameters are invalid</span>
+<span class="sd">            BaseException: If the return result from server is not ok</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">check_pass_param</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="n">collection_name</span><span class="p">)</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="p">()</span> <span class="k">as</span> <span class="n">handler</span><span class="p">:</span>
@@ -655,7 +746,6 @@
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../api.html">API reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../param.html">Index params</a></li>
 </ul>
 
 <div class="relations">

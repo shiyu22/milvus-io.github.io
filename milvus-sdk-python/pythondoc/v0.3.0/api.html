@@ -14,7 +14,6 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Index params" href="param.html" />
     <link rel="prev" title="Welcome to pymilvus&#39;s documentation!" href="index.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -166,6 +165,11 @@ Note that in current version his is an EXPERIMENTAL function.</p>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>Status.</p>
 </dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RpcError: If grpc encounter an error
+ParamError: If parameters are invalid
+BaseException: If the return result from server is not ok</p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -182,6 +186,11 @@ Note that in current version his is an EXPERIMENTAL function.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>int</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RpcError: If grpc encounter an error
+ParamError: If parameters are invalid
+BaseException: If the return result from server is not ok</p>
 </dd>
 </dl>
 </dd></dl>
@@ -201,7 +210,8 @@ Note that in current version his is an EXPERIMENTAL function.</p>
 :type  fields: str</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p>ParamError: If parameters are invalid
+<dd class="field-odd"><p>RpcError: If grpc encounter an error
+ParamError: If parameters are invalid
 BaseException: If the return result from server is not ok</p>
 </dd>
 </dl>
@@ -222,6 +232,11 @@ index to the client; otherwise, the server replaces the existing index with the 
 <li><p><strong>params</strong> (<em>dict</em>) -- Indexing parameters.</p></li>
 </ul>
 </dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RpcError: If grpc encounter an error
+ParamError: If parameters are invalid
+BaseException: If the return result from server is not ok</p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -238,6 +253,11 @@ partitions of the same tag, whilst you can insert the same tag in different coll
 <li><p><strong>partition_tag</strong> (<em>str</em>) -- Name of the partition.</p></li>
 <li><p><strong>partition_tag</strong> -- The tag name of the partition.</p></li>
 </ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RpcError: If grpc encounter an error
+ParamError: If parameters are invalid
+BaseException: If the return result from server is not ok</p>
 </dd>
 </dl>
 </dd></dl>
@@ -256,10 +276,15 @@ partitions of the same tag, whilst you can insert the same tag in different coll
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Status of delete request. The delete request will still execute successfully
 if Some of ids may not exist in specified collection, in this case the returned
-status will differ. NOte that in current version his is an EXPERIMENTAL function.</p>
+status will differ. Note that in current version his is an EXPERIMENTAL function.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>Status.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RpcError: If grpc encounter an error
+ParamError: If parameters are invalid
+BaseException: If the return result from server is not ok</p>
 </dd>
 </dl>
 </dd></dl>
@@ -271,6 +296,11 @@ status will differ. NOte that in current version his is an EXPERIMENTAL function
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>collection_name</strong> (<em>str</em>) -- The name of the collection to delete.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RpcError: If grpc encounter an error
+ParamError: If parameters are invalid
+BaseException: If the return result from server is not ok</p>
 </dd>
 </dl>
 </dd></dl>
@@ -286,6 +316,11 @@ status will differ. NOte that in current version his is an EXPERIMENTAL function
 <li><p><strong>field_name</strong> (<em>str</em>) -- The name of the field to remove the index of.</p></li>
 </ul>
 </dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RpcError: If grpc encounter an error
+ParamError: If parameters are invalid
+BaseException: If the return result from server is not ok</p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -300,6 +335,11 @@ status will differ. NOte that in current version his is an EXPERIMENTAL function
 <li><p><strong>partition_tag</strong> (<em>str</em>) -- The tag name of the partition to delete.</p></li>
 </ul>
 </dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RpcError: If grpc encounter an error
+ParamError: If parameters are invalid
+BaseException: If the return result from server is not ok</p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -313,6 +353,11 @@ is no longer recoverable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>collection_name_array</strong> (<em>An array of names of the collections to flush.</em>) -- list[str]</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RpcError: If grpc encounter an error
+ParamError: If parameters are invalid
+BaseException: If the return result from server is not ok</p>
 </dd>
 </dl>
 </dd></dl>
@@ -332,6 +377,11 @@ information of the collection and index information of fields.</p>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>dict</p>
 </dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RpcError: If grpc encounter an error
+ParamError: If parameters are invalid
+BaseException: If the return result from server is not ok</p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -349,6 +399,11 @@ the number of entities and the storage size of each segment of the collection.</
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RpcError: If grpc encounter an error
+ParamError: If parameters are invalid
+BaseException: If the return result from server is not ok</p>
 </dd>
 </dl>
 </dd></dl>
@@ -370,6 +425,11 @@ the number of entities and the storage size of each segment of the collection.</
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>Entities</p>
 </dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RpcError: If grpc encounter an error
+ParamError: If parameters are invalid
+BaseException: If the return result from server is not ok</p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -386,6 +446,11 @@ the number of entities and the storage size of each segment of the collection.</
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RpcError: If grpc encounter an error
+ParamError: If parameters are invalid
+BaseException: If the return result from server is not ok</p>
 </dd>
 </dl>
 </dd></dl>
@@ -406,6 +471,11 @@ the number of entities and the storage size of each segment of the collection.</
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RpcError: If grpc encounter an error
+ParamError: If parameters are invalid
+BaseException: If the return result from server is not ok</p>
 </dd>
 </dl>
 </dd></dl>
@@ -430,6 +500,11 @@ None. The server stores entities in the “_default” partition by default.</p>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>list[int]</p>
 </dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RpcError: If grpc encounter an error
+ParamError: If parameters are invalid
+BaseException: If the return result from server is not ok</p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -443,6 +518,11 @@ None. The server stores entities in the “_default” partition by default.</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>list[str]</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>RpcError: If grpc encounter an error
+ParamError: If parameters are invalid
+BaseException: If the return result from server is not ok</p>
 </dd>
 </dl>
 </dd></dl>
@@ -464,6 +544,11 @@ None. The server stores entities in the “_default” partition by default.</p>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>list[int]</p>
 </dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RpcError: If grpc encounter an error
+ParamError: If parameters are invalid
+BaseException: If the return result from server is not ok</p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -481,6 +566,11 @@ None. The server stores entities in the “_default” partition by default.</p>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>list[str]</p>
 </dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RpcError: If grpc encounter an error
+ParamError: If parameters are invalid
+BaseException: If the return result from server is not ok</p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -493,6 +583,11 @@ None. The server stores entities in the “_default” partition by default.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>collection_name</strong> (<em>str</em>) -- The name of the collection to load.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RpcError: If grpc encounter an error
+ParamError: If parameters are invalid
+BaseException: If the return result from server is not ok</p>
 </dd>
 </dl>
 </dd></dl>
@@ -516,6 +611,11 @@ None. The server stores entities in the “_default” partition by default.</p>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>QueryResult</p>
 </dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RpcError: If grpc encounter an error
+ParamError: If parameters are invalid
+BaseException: If the return result from server is not ok</p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -531,7 +631,7 @@ method used in Mishards. Obtain more detail about Mishards, see
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>collection_name</strong> (<em>str:param collection_name: table name been queried</em>) -- The name of the collection to search.</p></li>
 <li><p><strong>dsl</strong> (<em>dict</em>) -- The DSL that defines the query.:type  collection_name: str</p></li>
-<li><p><strong>partition_tags</strong> (<em>list</em><em>[</em><em>str</em><em>]</em><em>:param file_ids: Specified files id array</em>) -- The tags of partitions to search.:type  file_ids: list[str] or list[int]</p></li>
+<li><p><strong>partition_tags</strong> (<em>list</em><em>[</em><em>str</em><em>]</em><em>:param file_ids: Specified files id array</em>) -- The tags of partitions to search.</p></li>
 <li><p><strong>fields</strong> (<em>list</em><em>[</em><em>str</em><em>]</em><em>:type  query_records: list</em><em>[</em><em>list</em><em>[</em><em>float</em><em>]</em><em>]</em>) -- The fields to return in the search result</p></li>
 </ul>
 </dd>
@@ -540,6 +640,11 @@ method used in Mishards. Obtain more detail about Mishards, see
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>QueryResult</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RpcError: If grpc encounter an error
+ParamError: If parameters are invalid
+BaseException: If the return result from server is not ok</p>
 </dd>
 </dl>
 </dd></dl>
@@ -578,7 +683,6 @@ method used in Mishards. Obtain more detail about Mishards, see
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="param.html">Index params</a></li>
 </ul>
 
 <div class="relations">
@@ -586,7 +690,6 @@ method used in Mishards. Obtain more detail about Mishards, see
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="index.html" title="previous chapter">Welcome to pymilvus's documentation!</a></li>
-      <li>Next: <a href="param.html" title="next chapter">Index params</a></li>
   </ul></li>
 </ul>
 </div>

@@ -153,8 +153,8 @@
 <p><strong>Leaf query clauses</strong></p>
 <p>Leaf query clauses look for a particular value in a particular field. Currently milvus support <code class="docutils literal notranslate"><span class="pre">term</span></code>, <code class="docutils literal notranslate"><span class="pre">range</span></code>, <code class="docutils literal notranslate"><span class="pre">vector</span></code> queries.</p>
 <ul>
-<li><p>term: term query matches the entities which corresponding field value are in the specified list. The format is <code class="docutils literal notranslate"><span class="pre">term:</span> <span class="pre">[$value1,</span> <span class="pre">$value2,</span> <span class="pre">...]</span></code></p></li>
-<li><p>range: range query matches the entities which corresponding field value are in the specified range. The supported range types are:</p>
+<li><p>term: term query matches the entities whose specified field value are in the specified list. The format is <code class="docutils literal notranslate"><span class="pre">&quot;term&quot;:</span> <span class="pre">{&quot;$field&quot;:</span> <span class="pre">[$value1,</span> <span class="pre">$value2,</span> <span class="pre">...]}</span></code></p></li>
+<li><p>range: range query matches the entities whose specified field value are under the specified range. The format is <code class="docutils literal notranslate"><span class="pre">&quot;range&quot;:</span> <span class="pre">{&quot;$field&quot;:</span> <span class="pre">{&quot;$range-type&quot;:</span> <span class="pre">$value1</span> <span class="pre">...</span> <span class="pre">}}</span></code>. The supported range types are:</p>
 <ul class="simple">
 <li><p>&quot;GT&quot;(greater than)</p></li>
 <li><p>&quot;GTE&quot;(greater than or equal)</p></li>
@@ -162,13 +162,14 @@
 <li><p>&quot;LTE&quot;(less than or equal).</p></li>
 </ul>
 </li>
-<li><p>vector: vector query only take effect on vector fields, and approximately search nearest vectors. The format should be <code class="docutils literal notranslate"><span class="pre">{&quot;topk&quot;:</span> <span class="pre">$topk,</span> <span class="pre">&quot;query&quot;:</span> <span class="pre">$vectors,</span> <span class="pre">&quot;params&quot;:</span> <span class="pre">{...},</span> <span class="pre">&quot;metric_type&quot;:</span> <span class="pre">$metric}</span></code>.</p>
-<p>here, &quot;topk&quot; is the number of approximately nearest top-k entities for each query vector. &quot;query&quot; is a list of query vectors. &quot;params&quot; is search parameters, and &quot;metric_type&quot; indicates which distance computation type to be used.</p>
+<li><p>vector: vector query only takes effect on vector fields, and approximately search nearest vectors. The format should be <code class="docutils literal notranslate"><span class="pre">{&quot;topk&quot;:</span> <span class="pre">$topk,</span> <span class="pre">&quot;query&quot;:</span> <span class="pre">$vectors,</span> <span class="pre">&quot;params&quot;:</span> <span class="pre">{...},</span> <span class="pre">&quot;metric_type&quot;:</span> <span class="pre">$metric}</span></code>.</p>
+<p>Here, &quot;topk&quot; is the number of approximately nearest top-k entities for each query vector. &quot;query&quot; is a list of query vectors. &quot;params&quot; is search parameters, and &quot;metric_type&quot; indicates which distance computation type to be used.
+&quot;metric_type&quot; is not necessary if it is specified when creating index.</p>
 </li>
 </ul>
 <p>Note that, the <code class="docutils literal notranslate"><span class="pre">term</span></code> and <code class="docutils literal notranslate"><span class="pre">range</span></code> query act as filter queries for <code class="docutils literal notranslate"><span class="pre">vector</span></code> query, they are pre-filtered.</p>
 <p><strong>Compound query clauses</strong></p>
-<p>Currently, milvus only support boolean query, i.e. <code class="docutils literal notranslate"><span class="pre">bool</span></code>. There are three occurrence types:</p>
+<p>Currently, milvus only support boolean query, i.e. <code class="docutils literal notranslate"><span class="pre">bool</span></code>. There are three types:</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 27%" />
@@ -191,7 +192,7 @@
 </tr>
 </tbody>
 </table>
-<p>The three occurrence types allow the follow rules:</p>
+<p>The three types abide by the follow rules:</p>
 <ul class="simple">
 <li><p>vector query cannot belong must and must_not. The follow clauses are not permitted:</p></li>
 </ul>
@@ -242,7 +243,7 @@
 <ul class="simple">
 <li><p>The whole clause must and can only contain a vector query. The follow clauses are not permitted:</p></li>
 </ul>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>   {
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{
    &quot;bool&quot;: {
       &quot;must&quot;: {
          &quot;term&quot;: {...},

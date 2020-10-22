@@ -33,10 +33,11 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Query DSL" href="query.html" />
-    <link rel="prev" title="Welcome to pymilvus&#39;s documentation!" href="index.html" /> 
+    <link rel="next" title="Index params" href="param.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="tutorial.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -82,6 +83,7 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installing/Upgrading</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#client">Client</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#constructor">Constructor</a></li>
@@ -91,6 +93,8 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="param.html">Index params</a></li>
+<li class="toctree-l1"><a class="reference internal" href="results.html">Search Results</a></li>
 <li class="toctree-l1"><a class="reference internal" href="query.html">Query DSL</a></li>
 </ul>
 
@@ -164,8 +168,8 @@
 <h3>Constructor<a class="headerlink" href="#constructor" title="Permalink to this headline">¶</a></h3>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 69%" />
-<col style="width: 31%" />
+<col style="width: 36%" />
+<col style="width: 64%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Constructor</p></th>
@@ -173,7 +177,7 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><a class="reference external" href="#milvus.Milvus">Milvus([host, port, handler, pool, **kwargs])</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="#milvus.Milvus">Milvus()</a></p></td>
 <td><p>milvus client</p></td>
 </tr>
 </tbody>
@@ -183,8 +187,8 @@
 <h3>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h3>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 87%" />
-<col style="width: 13%" />
+<col style="width: 49%" />
+<col style="width: 51%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>API</p></th>
@@ -192,71 +196,71 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><a class="reference external" href="#milvus.Milvus.create_collection">create_collection(collection_name, fields[, timeout])</a></p></td>
-<td></td>
+<tr class="row-even"><td><p><a class="reference external" href="#milvus.Milvus.create_collection">create_collection()</a></p></td>
+<td><p>Create a collection.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="#milvus.Milvus.has_collection">has_collection(self, collection_name[, timeout])</a></p></td>
-<td></td>
+<tr class="row-odd"><td><p><a class="reference external" href="#milvus.Milvus.has_collection">has_collection()</a></p></td>
+<td><p>Check if collection exists.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="#milvus.Milvus.get_collection_info">get_collection_info(collection_name[, timeout])</a></p></td>
-<td></td>
+<tr class="row-even"><td><p><a class="reference external" href="#milvus.Milvus.get_collection_info">get_collection_info()</a></p></td>
+<td><p>Obtain collection information.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="#milvus.Milvus.count_entities">count_entities(self, collection_name[, timeout])</a></p></td>
-<td></td>
+<tr class="row-odd"><td><p><a class="reference external" href="#milvus.Milvus.count_entities">count_entities()</a></p></td>
+<td><p>Obtain the number of entity in a collection.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="#milvus.Milvus.list_collections">list_collections([timeout])</a></p></td>
-<td></td>
+<tr class="row-even"><td><p><a class="reference external" href="#milvus.Milvus.list_collections">list_collections()</a></p></td>
+<td><p>Get the list of collections.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="#milvus.Milvus.get_collection_stats">get_collection_stats(collection_name[, timeout])</a></p></td>
-<td></td>
+<tr class="row-odd"><td><p><a class="reference external" href="#milvus.Milvus.get_collection_stats">get_collection_stats()</a></p></td>
+<td><p>Obtain collection statistics information.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="#milvus.Milvus.load_collection">load_collection(collection_name, timeout=None)</a></p></td>
-<td></td>
+<tr class="row-even"><td><p><a class="reference external" href="#milvus.Milvus.load_collection">load_collection()</a></p></td>
+<td><p>Load collection from disk to memory.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="#milvus.Milvus.drop_collection">drop_collection(collection_name[, timeout])</a></p></td>
-<td></td>
+<tr class="row-odd"><td><p><a class="reference external" href="#milvus.Milvus.drop_collection">drop_collection()</a></p></td>
+<td><p>drop a collection.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="#milvus.Milvus.insert">insert(collection_name, entities, ids[, partition_tag, params, timeout, **kwargs])</a></p></td>
-<td></td>
+<tr class="row-even"><td><p><a class="reference external" href="#milvus.Milvus.insert">insert()</a></p></td>
+<td><p>insert entities into specified collection.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="#milvus.Milvus.get_entity_by_id">get_entity_by_id(collection_name, ids[, fields, timeout])</a></p></td>
-<td></td>
+<tr class="row-odd"><td><p><a class="reference external" href="#milvus.Milvus.get_entity_by_id">get_entity_by_id()</a></p></td>
+<td><p>Obtain entities by providing entity ids.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="#milvus.Milvus.list_id_in_segment">list_id_in_segment(collection_name, segment_id[, timeout])</a></p></td>
-<td></td>
+<tr class="row-even"><td><p><a class="reference external" href="#milvus.Milvus.list_id_in_segment">list_id_in_segment()</a></p></td>
+<td><p>Obtain the list of ids in specified segment.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="#milvus.Milvus.create_index">create_index(collection_name, field_name, params[, timeout, **kwargs])</a></p></td>
-<td></td>
+<tr class="row-odd"><td><p><a class="reference external" href="#milvus.Milvus.create_index">create_index()</a></p></td>
+<td><p>Create an index on specified field.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="#milvus.Milvus.drop_index">drop_index(collection_name, field_name[, timeout])</a></p></td>
-<td></td>
+<tr class="row-even"><td><p><a class="reference external" href="#milvus.Milvus.drop_index">drop_index()</a></p></td>
+<td><p>Drop index on specified field.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="#milvus.Milvus.create_partition">create_partition(collection_name, partition_tag[, timeout])</a></p></td>
-<td></td>
+<tr class="row-odd"><td><p><a class="reference external" href="#milvus.Milvus.create_partition">create_partition()</a></p></td>
+<td><p>Create a partition under specified collection.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="#milvus.Milvus.has_partition">has_partition(collection_name, partition_tag[, timeout])</a></p></td>
-<td></td>
+<tr class="row-even"><td><p><a class="reference external" href="#milvus.Milvus.has_partition">has_partition()</a></p></td>
+<td><p>Check if specified partition exists under a collection.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="#milvus.Milvus.list_partitions">list_partitions(collection_name[, timeout])</a></p></td>
-<td></td>
+<tr class="row-odd"><td><p><a class="reference external" href="#milvus.Milvus.list_partitions">list_partitions()</a></p></td>
+<td><p>Obtain list of partitions under a collection.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="#milvus.Milvus.drop_partition">drop_partition(collection_name, partition_tag[, timeout])</a></p></td>
-<td></td>
+<tr class="row-even"><td><p><a class="reference external" href="#milvus.Milvus.drop_partition">drop_partition()</a></p></td>
+<td><p>Drop specified partition under a collection.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="#milvus.Milvus.search">search(collection_name, dsl[, partition_tags, fields, timeout, **kwargs])</a></p></td>
-<td></td>
+<tr class="row-odd"><td><p><a class="reference external" href="#milvus.Milvus.search">search()</a></p></td>
+<td><p>Search approximate nearest entities.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="#milvus.Milvus.search_in_segment">search_in_segment(collection_name, segment_ids, dsl[, fields, timeout, **kwargs])</a></p></td>
-<td></td>
+<tr class="row-even"><td><p><a class="reference external" href="#milvus.Milvus.search_in_segment">search_in_segment()</a></p></td>
+<td><p>Search approximate nearest entities in specified segments.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="#milvus.Milvus.delete_entity_by_id">delete_entity_by_id(collection_name, ids[, timeout])</a></p></td>
-<td></td>
+<tr class="row-odd"><td><p><a class="reference external" href="#milvus.Milvus.delete_entity_by_id">delete_entity_by_id()</a></p></td>
+<td><p>Delete entities by providing entity ids.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="#milvus.Milvus.flush">flush([collection_name_array, timeout, **kwargs])</a></p></td>
-<td></td>
+<tr class="row-even"><td><p><a class="reference external" href="#milvus.Milvus.flush">flush()</a></p></td>
+<td><p>Flush collection data from memory to storage.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="#milvus.Milvus.compact">compact(collection_name[, threshold, timeout, **kwargs])</a></p></td>
-<td></td>
+<tr class="row-odd"><td><p><a class="reference external" href="#milvus.Milvus.compact">compact()</a></p></td>
+<td><p>Compact specified collection.</p></td>
 </tr>
 </tbody>
 </table>
@@ -788,10 +792,10 @@ BaseException: If the return result from server is not ok</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="query.html" class="btn btn-neutral float-right" title="Query DSL" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="param.html" class="btn btn-neutral float-right" title="Index params" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to pymilvus&#39;s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="tutorial.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
